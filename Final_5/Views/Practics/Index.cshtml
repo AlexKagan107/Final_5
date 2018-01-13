@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Final_5.Models.Practics>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.practicsName }) |
+            @Html.ActionLink("Details", "Details", new { id=item.practicsName }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.practicsName })
+        </td>
+    </tr>
+}
+
+</table>

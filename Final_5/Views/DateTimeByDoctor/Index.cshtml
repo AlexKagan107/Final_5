@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Final_5.Models.DateTimeByDoctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.practicsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.insertDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.turnId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor.firstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.practicsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.insertDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.turnId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.firstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

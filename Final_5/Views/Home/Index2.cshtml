@@ -1,0 +1,109 @@
+﻿@model Final_5.Models.User
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>User_2</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+
+       
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Speech API Tutorial</title>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 22px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <span id="speech"></span>
+    <span id="interim"></span>
+</body>
+
+<script>
+    function upgrade() {
+        alert('Please use Google Chrome for best experience');
+    }
+
+    window.onload = function () {
+        if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
+            upgrade();
+        } else {
+            var recognizing,
+                transcription = document.getElementById('speech'),
+                interim_span = document.getElementById('interim');
+
+            interim_span.style.opacity = '0.5';
+
+
+            function reset() {
+                recognizing = false;
+                interim_span.innerHTML = '';
+                transcription.innerHTML = '';
+                speech.start();
+            }
+
+            var speech = new webkitSpeechRecognition() || speechRecognition();
+
+            speech.continuous = true;
+            speech.interimResults = true;
+            speech.lang = 'en-US'; // check google web speech example source for more lanuages
+            speech.start(); //enables recognition on default
+
+            speech.onstart = function () {
+                // When recognition begins
+                recognizing = true;
+            };
+
+            speech.onresult = function (event) {
+                // When recognition produces result
+                var interim_transcript = '';
+                var final_transcript = '';
+
+                // main for loop for final and interim results
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        final_transcript += event.results[i][0].transcript;
+                    } else {
+                        interim_transcript += event.results[i][0].transcript;
+                    }
+                }
+                transcription.innerHTML = final_transcript;
+                interim_span.innerHTML = interim_transcript;
+               // alert(transcription.innerHTML);
+                if (transcription.innerHTML == "move" || interim_span.innerHTML == "move")
+                    window.location = "http://localhost:11092/Turn/Index";
+
+                if (transcription.innerHTML.indexOf("search") > -1 || interim_span.innerHTML.indexOf("search") > -1) {
+                    var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
+                    if (name != undefined && name != "") {
+                        window.location = "http://localhost:3561/Users/Exists?name=" + name;
+                    }
+                }
+            };
+            speech.onerror = function (event) {
+                // Either 'No-speech' or 'Network connection error'
+                console.error(event.error);
+            };
+            speech.onend = function () {
+                // When recognition ends
+                reset();
+            };
+
+        }
+    };
+</script>
+</html>

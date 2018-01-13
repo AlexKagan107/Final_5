@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brunch">
+          <Key>
+            <PropertyRef Name="brunchNameId" />
+          </Key>
+          <Property Name="brunchNameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DateTimeByDoctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDoctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="insertDate" Type="datetime" Nullable="false" />
+          <Property Name="turnId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="idDoctor" />
+          </Key>
+          <Property Name="idDoctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalSheet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turnId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateTime" Type="datetime" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="medicineName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="medicineName" />
+          </Key>
+          <Property Name="medicineName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Practics">
+          <Key>
+            <PropertyRef Name="practicsName" />
+          </Key>
+          <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Turn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hour" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" />
+          <Property Name="medicineName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fileFinger" Type="nvarchar(max)" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idDoctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="permissions" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CreateDateTimeByDoctor_ToTable">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="DateTimeByDoctor" Type="Self.DateTimeByDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="DateTimeByDoctor">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_ToTable">
+          <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="practicsName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalSheet_ToTable">
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="1" />
+          <End Role="MedicalSheet" Type="Self.MedicalSheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="medicineName" />
+            </Principal>
+            <Dependent Role="MedicalSheet">
+              <PropertyRef Name="medicineName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalSheet_ToTable_1">
+          <End Role="Turn" Type="Self.Turn" Multiplicity="1" />
+          <End Role="MedicalSheet" Type="Self.MedicalSheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalSheet">
+              <PropertyRef Name="turnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Turn_2_ToTable">
+          <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
+          <End Role="Turn" Type="Self.Turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="Turn">
+              <PropertyRef Name="practicsName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Turn_ToTable">
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="0..1" />
+          <End Role="Turn" Type="Self.Turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="medicineName" />
+            </Principal>
+            <Dependent Role="Turn">
+              <PropertyRef Name="medicineName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_ToTable">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Brunch" EntityType="Self.Brunch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DateTimeByDoctor" EntityType="Self.DateTimeByDoctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalSheet" EntityType="Self.MedicalSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Practics" EntityType="Self.Practics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turn" EntityType="Self.Turn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CreateDateTimeByDoctor_ToTable" Association="Self.FK_CreateDateTimeByDoctor_ToTable">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_ToTable" Association="Self.FK_Doctor_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalSheet_ToTable" Association="Self.FK_MedicalSheet_ToTable">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="MedicalSheet" EntitySet="MedicalSheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalSheet_ToTable_1" Association="Self.FK_MedicalSheet_ToTable_1">
+            <End Role="Turn" EntitySet="Turn" />
+            <End Role="MedicalSheet" EntitySet="MedicalSheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Turn_2_ToTable" Association="Self.FK_Turn_2_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="Turn" EntitySet="Turn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Turn_ToTable" Association="Self.FK_Turn_ToTable">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="Turn" EntitySet="Turn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_ToTable" Association="Self.FK_Users_ToTable">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brunch">
+          <Key>
+            <PropertyRef Name="brunchNameId" />
+          </Key>
+          <Property Name="brunchNameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="practicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="idDoctor" />
+          </Key>
+          <Property Name="idDoctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="practicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Practics" Relationship="Self.FK_Doctor_ToTable" FromRole="Doctor" ToRole="Practics" />
+          <NavigationProperty Name="DateTimeByDoctor" Relationship="Database1Model.FK_CreateDateTimeByDoctor_ToTable" FromRole="Doctor" ToRole="DateTimeByDoctor" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK_Users_ToTable" FromRole="Doctor" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Practics">
+          <Key>
+            <PropertyRef Name="practicsName" />
+          </Key>
+          <Property Name="practicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_ToTable" FromRole="Practics" ToRole="Doctor" />
+          <NavigationProperty Name="Turn" Relationship="Self.FK_Turn_2_ToTable" FromRole="Practics" ToRole="Turn" />
+        </EntityType>
+        <EntityType Name="Turn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="practicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Practics" Relationship="Self.FK_Turn_2_ToTable" FromRole="Turn" ToRole="Practics" />
+          <Property Name="medicineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medicine" Relationship="Database1Model.FK_Turn_ToTable" FromRole="Turn" ToRole="Medicine" />
+          <NavigationProperty Name="MedicalSheet" Relationship="Database1Model.FK_MedicalSheet_ToTable_1" FromRole="Turn" ToRole="MedicalSheet" />
+        </EntityType>
+        <Association Name="FK_Doctor_ToTable">
+          <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="practicsName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Turn_2_ToTable">
+          <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
+          <End Role="Turn" Type="Self.Turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="Turn">
+              <PropertyRef Name="practicsName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brunch" EntityType="Self.Brunch" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+          <EntitySet Name="Practics" EntityType="Self.Practics" />
+          <EntitySet Name="Turn" EntityType="Self.Turn" />
+          <AssociationSet Name="FK_Doctor_ToTable" Association="Self.FK_Doctor_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Turn_2_ToTable" Association="Self.FK_Turn_2_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="Turn" EntitySet="Turn" />
+          </AssociationSet>
+          <EntitySet Name="Medicine" EntityType="Database1Model.Medicine" />
+          <AssociationSet Name="FK_Turn_ToTable" Association="Database1Model.FK_Turn_ToTable">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="Turn" EntitySet="Turn" />
+          </AssociationSet>
+          <EntitySet Name="MedicalSheet" EntityType="Database1Model.MedicalSheet" />
+          <AssociationSet Name="FK_MedicalSheet_ToTable" Association="Database1Model.FK_MedicalSheet_ToTable">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="MedicalSheet" EntitySet="MedicalSheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalSheet_ToTable_1" Association="Database1Model.FK_MedicalSheet_ToTable_1">
+            <End Role="Turn" EntitySet="Turn" />
+            <End Role="MedicalSheet" EntitySet="MedicalSheet" />
+          </AssociationSet>
+          <EntitySet Name="DateTimeByDoctor" EntityType="Database1Model.DateTimeByDoctor" />
+          <AssociationSet Name="FK_CreateDateTimeByDoctor_ToTable" Association="Database1Model.FK_CreateDateTimeByDoctor_ToTable">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="Database1Model.Users" />
+          <AssociationSet Name="FK_Users_ToTable" Association="Database1Model.FK_Users_ToTable">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="medicineName" />
+          </Key>
+          <Property Name="medicineName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Turn" Relationship="Database1Model.FK_Turn_ToTable" FromRole="Medicine" ToRole="Turn" />
+          <NavigationProperty Name="MedicalSheet" Relationship="Database1Model.FK_MedicalSheet_ToTable" FromRole="Medicine" ToRole="MedicalSheet" />
+        </EntityType>
+        <Association Name="FK_Turn_ToTable">
+          <End Type="Database1Model.Medicine" Role="Medicine" Multiplicity="0..1" />
+          <End Type="Database1Model.Turn" Role="Turn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="medicineName" />
+            </Principal>
+            <Dependent Role="Turn">
+              <PropertyRef Name="medicineName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MedicalSheet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turnId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateTime" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="medicineName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medicine" Relationship="Database1Model.FK_MedicalSheet_ToTable" FromRole="MedicalSheet" ToRole="Medicine" />
+          <NavigationProperty Name="Turn" Relationship="Database1Model.FK_MedicalSheet_ToTable_1" FromRole="MedicalSheet" ToRole="Turn" />
+        </EntityType>
+        <Association Name="FK_MedicalSheet_ToTable">
+          <End Type="Database1Model.Medicine" Role="Medicine" Multiplicity="1" />
+          <End Type="Database1Model.MedicalSheet" Role="MedicalSheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="medicineName" />
+            </Principal>
+            <Dependent Role="MedicalSheet">
+              <PropertyRef Name="medicineName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalSheet_ToTable_1">
+          <End Type="Database1Model.Turn" Role="Turn" Multiplicity="1" />
+          <End Type="Database1Model.MedicalSheet" Role="MedicalSheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalSheet">
+              <PropertyRef Name="turnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DateTimeByDoctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDoctor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="practicsName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="turnId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Doctor" Relationship="Database1Model.FK_CreateDateTimeByDoctor_ToTable" FromRole="DateTimeByDoctor" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK_CreateDateTimeByDoctor_ToTable">
+          <End Type="Database1Model.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="Database1Model.DateTimeByDoctor" Role="DateTimeByDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="DateTimeByDoctor">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fileFinger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idDoctor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="permissions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Doctor" Relationship="Database1Model.FK_Users_ToTable" FromRole="Users" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK_Users_ToTable">
+          <End Type="Database1Model.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="Database1Model.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+          <EntitySetMapping Name="Brunch">
+            <EntityTypeMapping TypeName="Database1Model.Brunch">
+              <MappingFragment StoreEntitySet="Brunch">
+                <ScalarProperty Name="brunchNameId" ColumnName="brunchNameId" />
+                <ScalarProperty Name="practicsName" ColumnName="practicsName" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor">
+            <EntityTypeMapping TypeName="Database1Model.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="practicsName" ColumnName="practicsName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Practics">
+            <EntityTypeMapping TypeName="Database1Model.Practics">
+              <MappingFragment StoreEntitySet="Practics">
+                <ScalarProperty Name="practicsName" ColumnName="practicsName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turn">
+            <EntityTypeMapping TypeName="Database1Model.Turn">
+              <MappingFragment StoreEntitySet="Turn">
+                <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="practicsName" ColumnName="practicsName" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="hour" ColumnName="hour" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicine">
+            <EntityTypeMapping TypeName="Database1Model.Medicine">
+              <MappingFragment StoreEntitySet="Medicine">
+                <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalSheet">
+            <EntityTypeMapping TypeName="Database1Model.MedicalSheet">
+              <MappingFragment StoreEntitySet="MedicalSheet">
+                <ScalarProperty Name="medicineName" ColumnName="medicineName" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="turnId" ColumnName="turnId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DateTimeByDoctor">
+            <EntityTypeMapping TypeName="Database1Model.DateTimeByDoctor">
+              <MappingFragment StoreEntitySet="DateTimeByDoctor">
+                <ScalarProperty Name="turnId" ColumnName="turnId" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="practicsName" ColumnName="practicsName" />
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Database1Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="permissions" ColumnName="permissions" />
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="fileFinger" ColumnName="fileFinger" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

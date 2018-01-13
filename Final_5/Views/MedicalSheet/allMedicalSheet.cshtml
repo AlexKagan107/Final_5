@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Final_5.Models.MedicalSheet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Show Medical</h2>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.turnId)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.dateTime)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicine.medicineName)
+            </th>
+            <th>@Html.Label("Print")</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var id = item.turnId;
+            <tr id=@id>
+                <td>
+                    @Html.DisplayFor(modelItem => item.turnId)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.dateTime)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medicine.medicineName)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-xs" onclick="printContent('@id')"> <span class="glyphicon glyphicon-print"></span> Print </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function printContent(el) {
+            var restorepage = document.body.innerHTML;
+            var printcontent = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printcontent;
+            window.print();
+        }
+    });
+
+    function printContent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+    }
+
+</script>

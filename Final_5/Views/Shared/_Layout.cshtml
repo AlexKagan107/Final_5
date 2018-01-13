@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @if (Session["userId"] != null)
+                {
+                    @Html.ActionLink("Hello " + Session["userId"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Welcome", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Login/Login">LOGIN</a></li>
+                        <li><a href="/Users/Create">REGISTER</a></li>
+                    </ul>
+                }
+
+            </div>
+            @if (Session["permissions"] != null && (Session["permissions"].Equals("1") || Session["permissions"].Equals("3")))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Turn", "Create", "Turn")</li>
+                        <li>@Html.ActionLink("Show all Turn", "Index", "Turn")</li>
+                        <li>@Html.ActionLink("search user", "search_1", "Serach")</li>
+                        <li>@Html.ActionLink("Medical", "allMedicalSheet", "MedicalSheet")</li>
+                        <li>@Html.ActionLink("Doctor", "Create", "DateTimeByDoctor")</li>
+                    </ul>
+
+
+                    @if (Session["userId"] != null)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Welcome : @Session["userId"]</a></li>
+                            <li><a href="/Login/Logout">Logout</a></li>
+                        </ul>
+                    }
+
+                </div>
+            }
+            @if (Session["permissions"] != null && Session["permissions"].Equals("2"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Turn", "Create", "Turn")</li>
+                        <li>@Html.ActionLink("Show all Turn", "Index", "Turn")</li>
+                        <li>@Html.ActionLink("Medical", "allMedicalSheet", "MedicalSheet")</li>
+                    </ul>
+
+
+                    @if (Session["userId"] != null)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Welcome : @Session["userId"]</a></li>
+                            <li><a href="/Login/Logout">Logout</a></li>
+                        </ul>
+                    }
+
+
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
