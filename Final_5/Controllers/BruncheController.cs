@@ -18,6 +18,7 @@ namespace Final_5.Controllers
         // GET: Brunche
         public async Task<ActionResult> Index()
         {
+            // alex intall gitHub
             return View(await db.Brunch.ToListAsync());
         }
 
