@@ -5,13 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Final_5.Controllers
 {
     public class LoginController : Controller
     {
-        Login.Form1 log;
+        //Login.Form1 log;
 
         private Database1Entities db = new Database1Entities();
 
@@ -73,13 +74,13 @@ namespace Final_5.Controllers
             string result = "fail";
             string name = "";
 
-            log = new Login.Form1();
+            //log = new Login.Form1();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(log);
+            //Application.Run(log);
 
-            name = log.ThisName();
+            //name = log.ThisName();
 
             if (name != "")
             {
