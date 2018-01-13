@@ -19,6 +19,7 @@ namespace Final_5.Controllers
         public async Task<ActionResult> Index()
         {
             // alex intall gitHub
+            //hii nativ
             return View(await db.Brunch.ToListAsync());
         }
 
