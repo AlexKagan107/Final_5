@@ -23,15 +23,15 @@
                 <div class="form-group">
                     <div class="col-md-9">
                         @*<a class="btn btn-default" style="background-color:yellow" onclick="LoginFinger()">FingerPrint </a>
-                        <img src="~/Content/Images/icons invalid.png" style="width:120px ; height:120px" />*@
-                        <button type="button" onclick="LoginFinger()" style="background-color:white;"><img src="~/Content/Images/icons invalid.png" style="width:100px ; height:100px"/></button>
+                            <img src="~/Content/Images/icons invalid.png" style="width:120px ; height:120px" />*@
+                        <button type="button" onclick="LoginFinger()" style="background-color:white;"><img src="~/Content/Images/icons invalid.png" style="width:100px ; height:100px" /></button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="col-md-10">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -129,10 +129,31 @@
         <div class="panel panel-primary">
             <div class="panel-heading" style="width:270px"><h3>Search Doctor</h3></div>
             <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <form id="practicsNameDocForm">
+                            <div class="col-md-10">
+                                @Html.DropDownList("practicsName", null, "Choose", htmlAttributes: new { @class = "form-control" })
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <input type="text" id="FirstNameDoctor" class="form-control" />
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-10">
+                                    <button type="button" onclick="SearchDoctorr()" value="SearchDoctorr" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @section Scripts {
@@ -160,5 +181,34 @@
             }
 
         })
+    };
+
+    var SearchDoctorr = function () {
+
+        var data1 = $("#practicsNameDocForm").serialize();
+        var data2 = $("#FirstNameDocForm").serialize();
+        if (data1 == "Choose" || data1 == null) {
+
+        }
+        else {
+            $.ajax({
+                type: "Post",
+                url: "/Login/SearchDoctor",
+                data: data2,
+                success: function (response) {
+                    // debugger
+                    if (response == "fail") {
+                        alert("Login INVALID! Please try again.")
+                        window.location.href = "/Login/Login";
+                    }
+                    else if (response != "fail") {
+                        window.location.href = "/AnotherArea/Home2/Inde2";
+                    }
+                }
+
+            })
+        }
     }
+        
+
 </script>

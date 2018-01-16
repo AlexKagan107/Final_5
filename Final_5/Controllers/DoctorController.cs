@@ -121,6 +121,13 @@ namespace Final_5.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<ActionResult> SearchDoctor(string str)
+        {
+            ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName");
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
