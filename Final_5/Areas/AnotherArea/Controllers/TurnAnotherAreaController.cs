@@ -15,6 +15,48 @@ namespace Final_5.Areas.AnotherArea.Controllers
     {
         private Database1Entities db = new Database1Entities();
 
+        public async Task<ActionResult> turn(string str)
+        {
+            Turn t = new Turn();
+            string userId = Session["userId"].ToString();
+
+            List<Models.Turn> turn = await db.Turn.ToListAsync();
+            IEnumerable<string> userNames = turn.Select(x => x.practicsName);
+            var y = str.Split(' ');
+            string actualpracticsName = y[0];
+            string actualTime = y[1];
+            bool exists = userNames.Contains(actualpracticsName);
+
+            if (exists)
+            {
+                var time = turn.Where(x => x.hour == actualTime).First();
+                bool timeExits = time.hour.Contains(actualTime);
+                if (timeExits)
+                {
+                    t.userId = userId;
+                    t.hour = actualTime;
+                    t.practicsName = actualpracticsName;
+                    db.Turn.Add(t);
+                    await db.SaveChangesAsync();
+                    return Content("The doctor is free at this time");
+                }
+                else
+                {
+                    return Content("The doctor is full");
+                }
+
+            }
+            else
+            {
+                return Content("No such doctor");
+            }
+
+        }
+
+
+
+
+
         // GET: AnotherArea/TurnAnotherArea
         public async Task<ActionResult> Index()
         {

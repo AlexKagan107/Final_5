@@ -1,68 +1,106 @@
-﻿
+﻿@model Final_5.Models.Users
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index2";
 }
 
-<h2>Index</h2>
+<h2>User_2</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+}
+
+
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Speech API Tutorial</title>
+    <title>Hold 'Q' to begin speech recognition</title>
     <style>
         body {
             font-family: monospace;
             font-size: 22px;
+            background-color: whitesmoke;
+            -webkit-transition: background-color 400ms ease;
+            transition: background-color 400ms ease;
+        }
+
+        main {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            display: inline-block;
         }
     </style>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body>
-    <span id="speech"></span>
-    <span id="interim"></span>
+    <main>
+        <span id="speech"></span>
+        <span id="interim"></span>
+    </main>
 </body>
 
 <script>
+
     function upgrade() {
-        alert('Please use Google Chrome for best experience');
+        alert('Please upgrade to Google Chrome for best possible experience.');
     }
 
     window.onload = function () {
         if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
             upgrade();
         } else {
+
+            var speech = new webkitSpeechRecognition() || speechRecognition();// speech recognition api
+            speech.lang = 'en-US';
+            speech.continuous = true;//דיבור מתמשך פשוט
+            speech.interimResults = true;//true means interim results are returned
+
             var recognizing,
+                final_transcript,
+                interim_transcript,
                 transcription = document.getElementById('speech'),
                 interim_span = document.getElementById('interim');
 
+
             interim_span.style.opacity = '0.5';
 
-
             function reset() {
-                recognizing = false;
-                interim_span.innerHTML = '';
                 transcription.innerHTML = '';
-                speech.start();
+                interim_span.innerHTML = '';
+                recognizing = false;
             }
 
-            var speech = new webkitSpeechRecognition() || speechRecognition();
+            document.onkeydown = function (e) {
+                if (e.key === "q") {
+                    if (!recognizing) {
+                        speech.start();
+                    }
+                }
+            };
 
-            speech.continuous = true;
-            speech.interimResults = true;
-            speech.lang = 'en-US'; // check google web speech example source for more lanuages
-            speech.start(); //enables recognition on default
+            document.onkeyup = function (e) {
+                if (e.key === "q") {
+                    if (recognizing) {
+                        speech.stop();
+                        reset();
+                    }
+                }
+            };
 
             speech.onstart = function () {
                 // When recognition begins
                 recognizing = true;
+                console.log("Speaking!");
             };
 
             speech.onresult = function (event) {
                 // When recognition produces result
-                var interim_transcript = '';
-                var final_transcript = '';
+                interim_transcript = '';
+                final_transcript = '';
 
                 // main for loop for final and interim results
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -72,29 +110,68 @@
                         interim_transcript += event.results[i][0].transcript;
                     }
                 }
-                transcription.innerHTML = final_transcript;
-                interim_span.innerHTML = interim_transcript;
-                // alert(transcription.innerHTML);
-                if (transcription.innerHTML == "move" || interim_span.innerHTML == "move")
+
+                transcription.innerHTML = final_transcript;//סופי
+                interim_span.innerHTML = interim_transcript;//תוצאה ביניים
+
+
+                if (interim_span.innerHTML == "help")
+                    speak();
+
+                if (interim_span.innerHTML == "available turn")
+                    window.location = "http://localhost:11092/AnotherArea/DateTimeByDoctorsAnotherArea";
+
+                if (interim_span.innerHTML == "all turn")
                     window.location = "http://localhost:11092/AnotherArea/TurnAnotherArea";
 
-                if (transcription.innerHTML.indexOf("search") > -1 || interim_span.innerHTML.indexOf("search") > -1) {
+                if (interim_span.innerHTML == "medicine")
+                    window.location = "http://localhost:11092/AnotherArea/MedicalSheetsAnotherArea";
+
+
+                if (transcription.innerHTML.indexOf("create") > -1 || interim_span.innerHTML.indexOf("create") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
-                        window.location = "http://localhost:3561/Users/Exists?name=" + name;
+                        window.location = "http://localhost:11092/AnotherArea/TurnAnotherArea/turn?str=" + name;
+                    }
+                }
+
+
+                var makeArray = final_transcript.split(' ');
+                var bColor = makeArray.splice(-3);
+                // change background color
+                if ((/^change /g.test(final_transcript)) && (/background color/g.test(final_transcript))) {
+                    if (bColor[0] === 'to') {
+                        document.body.style.backgroundColor = bColor[1] + bColor[2];
+                    } else if (bColor[1] === 'to') {
+                        document.body.style.backgroundColor = bColor[2];
+                    } else {
+                        document.body.style.backgroundColor = bColor[0] + bColor[1] + bColor[2];
                     }
                 }
             };
+
             speech.onerror = function (event) {
-                // Either 'No-speech' or 'Network connection error'
+                // When recognition fails or error occurs
                 console.error(event.error);
             };
+
             speech.onend = function () {
                 // When recognition ends
+                console.log("Hold 'Q' to begin speech.");
                 reset();
             };
 
         }
     };
+    function speak() {
+        content = "Before you start using the application to get better service try to speak in an American accent at your service a site for ordering medical services";
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = content;
+        window.speechSynthesis.speak(msg);
+        bool = false;
+    }
 </script>
+
+
 </html>
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Final_5.Models.DateTimeByDoctor>
+
+@{
+    ViewBag.Title = "Index";
+    var concatString = "";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.practicsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.insertDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.turnId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor.firstName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.turnId.Equals("0"))
+        {
+            var x = item.practicsName + item.insertDate + ' ';
+            concatString += x;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.practicsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.insertDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.turnId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.firstName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<button id="readme" hidden="hidden" onclick="speak('@concatString')">Click me</button>
+
+
+
+<script>
+
+    document.onkeydown = function (e) {
+        if (e.key === "q")
+            document.getElementById("readme").click();
+
+        }
+
+            function speak(content) {
+                var msg = new SpeechSynthesisUtterance();
+                msg.text = content;
+                window.speechSynthesis.speak(msg);
+                window.location = "http://localhost:11092/AnotherArea/Home2/Inde2";
+            }
+</script>
