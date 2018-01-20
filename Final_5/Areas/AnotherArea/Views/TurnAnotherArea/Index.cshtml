@@ -3,7 +3,9 @@
 
 @{
     ViewBag.Title = "Index";
-    var str = "";
+    var concatString = "";
+    var concatString2 = "";
+
 }
 
 <h2>Show all turn</h2>
@@ -35,14 +37,11 @@
     </tr>
     @foreach (var item in Model)
     {
-        var x = item.userId;
-        x += item.date;
-        x += item.city;
-        x += item.comment + "";
-        x += item.medicineName + "";
-        x += item.practicsName.ToString();
-        x += +' ';
-        str += x.ToString();
+        var x = "You have a turn set for you with a doctor who specializes in" + item.practicsName + "in city" + item.city + "schedule for" + item.date;
+        concatString += x;
+        var y = "Your doctor has prescribed a prescription for you it is" + item.medicineName + "doctor commentary is" + item.comment;
+        concatString2 += y;
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.userId)
@@ -82,13 +81,22 @@
     }
 </table>
 
-<button id="readMe" onclick="speek('@str')">Click</button>
+<button id="readme" hidden="hidden" onclick="speek('@concatString')">Click</button>
+<button id="readme2" hidden="hidden" onclick="speek('@concatString2')">Click</button>
+
 
 <script>
+    document.onkeydown = function (e) {
+        if (e.key === "q")
+            document.getElementById("readme").click();
+        if (e.key === "w")
+            document.getElementById("readme2").click();
+    }
+
     function speek(conta) {
         var msg = new SpeechSynthesisUtterance();
         msg.text = conta;
         window.speechSynthesis.speak(msg);
-        window.location = "http://localhost:11092/Home/Index2";
+        window.location = "http://localhost:11092/AnotherArea/Home2/Inde2";
     }
 </script>
