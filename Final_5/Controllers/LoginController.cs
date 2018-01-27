@@ -25,6 +25,8 @@ namespace Final_5.Controllers
         //}
         public ActionResult Login()
         {
+            ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName");
+
             return View();
         }
 
@@ -116,6 +118,13 @@ namespace Final_5.Controllers
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SearchDoctor(string str)
+        {
+            ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName");
+            return View();
         }
     }
 }
