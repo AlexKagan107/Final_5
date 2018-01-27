@@ -15,7 +15,7 @@ namespace Final_5.Controllers
 {
     public class UsersController : Controller
     {
-        //Registration.Form1 Reg;
+        Registration.Form1 Reg;
 
         private Database1Entities db = new Database1Entities();
 

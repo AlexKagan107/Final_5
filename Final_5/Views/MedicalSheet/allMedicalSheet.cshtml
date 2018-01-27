@@ -4,25 +4,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Show Medical</h2>
+@*<h2>Show Medical</h2>*@
+<div style="margin-top:30px; margin-left:10%;">
+    <img src="~/Content/Images/slide-three.jpg" style="width:90% ; height:70%" class="img-rounded" alt="Cinque Terre" />
+</div>
+
+<br/>
 
 <div class="container">
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.turnId)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.dateTime)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.comment)
+                Turn ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Medicine.medicineName)
+                Date of Visit
             </th>
-            <th>@Html.Label("Print")</th>
-            <th></th>
+            <th>
+                Comment
+            </th>
+            <th>
+                Prescriptions
+            </th>
+            <th>
+                @Html.Label("Print")
+            </th>
+            @*<th></th>*@
         </tr>
 
         @foreach (var item in Model)
@@ -32,9 +39,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.turnId)
                 </td>
-                @*<td>
+                <td>
                     @Html.DisplayFor(modelItem => item.dateTime)
-                </td>*@
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.comment)
                 </td>
@@ -42,7 +49,7 @@
                     @Html.DisplayFor(modelItem => item.Medicine.medicineName)
                 </td>
                 <td>
-                    <button type="button" class="btn btn-xs" onclick="printContent('@id')"> <span class="glyphicon glyphicon-print"></span> Print </button>
+                    <button type="button" class="btn btn-info" onclick="printContent('@id')"> <span class="glyphicon glyphicon-print"></span> Print </button>
                 </td>
             </tr>
         }
