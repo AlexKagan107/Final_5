@@ -1,139 +1,142 @@
 ﻿@model Final_5.Models.Users
 
-@*@{
-        ViewBag.Title = "Login";
-    }
+<body style="height: 100%; width: 100%;">
 
-    <h2>Login</h2>*@
-@*<div class="col-md-9">
-        <h1>TEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSST</h1>
-    </div>*@
-@*<br />*@
+    <div id="middle" style="height: 600px; width: 100%; margin-top: 25px;">
 
+        <div style="width:10%;  margin-left:-6%; float: left ">
+            <div class="panel-group" style="width:240px;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="width:240px"><h3>Search Doctor</h3></div>
+                    <div class="panel-body">
 
-
-
-<div class="panel panel-default" style="width:75%; margin-top:30px; margin-left:-3%; ">
-
-    <div class="col-md-2">
-        <form id="myForm2">
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-
-                <div class="form-group">
-                    <div class="col-md-9">
-                        @*<a class="btn btn-default" style="background-color:yellow" onclick="LoginFinger()">FingerPrint </a>
-                        <img src="~/Content/Images/icons invalid.png" style="width:120px ; height:120px" />*@
-                        <button type="button" onclick="LoginFinger()" style="background-color:white;"><img src="~/Content/Images/icons invalid.png" style="width:100px ; height:100px"/></button>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
-        <div class="col-md-10">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-            </ol>
+        <div class="panel panel-default" style="width:65%;  margin-left:13%; float: left">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                @*<div class="col-md-10">*@
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="~/Content/Images/1.jpg" class="img-rounded" style="width:120% ; height:120%" />
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="~/Content/Images/1.jpg" class="img-rounded" style="width:100% ; height:100%" />
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/Images/2.jpg" class="img-rounded" style="width:100% ; height:100%" />
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/Images/4.jpg" class="img-rounded" style="width:100% ; height:100%" />
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/Images/5.jpg" class="img-rounded" style="width:100% ; height:100%" />
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/Images/6.jpg" class="img-rounded" style="width:100% ; height:100%" />
+                    </div>
                 </div>
 
-                <div class="item">
-                    <img src="~/Content/Images/2.jpg" class="img-rounded" style="width:120% ; height:120%" />
-                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    @*<span class="glyphicon glyphicon-chevron-left"></span>*@
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    @*<span class="glyphicon glyphicon-chevron-right"></span>*@
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        @*</div>*@
 
-                <div class="item">
-                    <img src="~/Content/Images/4.jpg" class="img-rounded" style="width:120% ; height:120%" />
-                </div>
+        <div style="width:15%; float:left; height:750px; ">
+            <div class="panel-group" style="width:240px; margin-left:15% ">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="width:240px"><h3>Login</h3></div>
+                    <div class="panel-body" style="margin-top:-12%">
+                        @*@using (Html.BeginForm())
+                            {*@
+                        <form id="myForm">
+                            @Html.AntiForgeryToken()
 
-                <div class="item">
-                    <img src="~/Content/Images/5.jpg" class="img-rounded" style="width:120% ; height:120%" />
-                </div>
+                            <div class="form-horizontal">
+                                @*<h4>User</h4>*@
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-warning" })
+                                <div class="form-group">
+                                    @*@Html.LabelFor(model => model.userId, "UserID:", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <br /><br />*@
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(model => model.userId, new { @class = "form-control", @placeholder = "ID Number" })
+                                        @*@Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
 
-                <div class="item">
-                    <img src="~/Content/Images/6.jpg" class="img-rounded" style="width:120% ; height:120%" />
+                                <div class="form-group">
+                                    @*@Html.LabelFor(model => model.password, "Password:", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <br /><br />*@
+                                    <div class="col-md-12">
+                                        @Html.PasswordFor(model => model.password, new { @class = "form-control", @placeholder = "Password" })
+                                        @*@Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @*<input type="submit" value="Login" class="btn btn-primary" style="height:40px; width:100px; margin-left:55px" />*@
+                                        <a href="#" class="btn btn-primary" onclick="LoginUser()" style="height:40px; width:100px; margin-left:55px"><p style="font-size:130%">Login</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            @*}*@
+                        </form>
+                        @*<div>
+                                @Html.ActionLink("Back to List", "Index")
+                            </div>*@
+                    </div>
                 </div>
             </div>
+            <br />
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
+            @*<div class="panel-group" style="width:270px; margin-left:25%;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="width:270px"><h3>Search Doctor</h3></div>
+                        <div class="panel-body">
 
-<div style="width:25%; float:left; height:750px; margin-top:-2% ">
-    <div class="panel-group" style="width:270px; margin-left:30%">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="width:270px"><h3>Login</h3></div>
-            <div class="panel-body" style="margin-top:-12%">
-                @using (Html.BeginForm())
-            {
+                        </div>
+                    </div>
+                </div>*@
+
+            <div style="margin-left:55%">
+                <form id="myForm2">
                     @Html.AntiForgeryToken()
-
                     <div class="form-horizontal">
-                        @*<h4>User</h4>*@
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.userId, "User ID:", htmlAttributes: new { @class = "control-label col-md-4" })
-                            <br /><br />
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.password, "Password:", htmlAttributes: new { @class = "control-label col-md-4" })
-                            <br /><br />
-                            <div class="col-md-9">
-                                @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-4 col-md-10">
-                                <input type="submit" value="Login" class="btn btn-primary" />
-                            </div>
+                        <div>
+                            <button type="button" onclick="LoginFinger()" style="background-color:lightgoldenrodyellow; border-bottom-color:none;border:none ">
+                                <img src="~/Content/Images/invalid3.png" />
+                            </button>
                         </div>
                     </div>
-                }
-
-                @*<div>
-                        @Html.ActionLink("Back to List", "Index")
-                    </div>*@
+                </form>
             </div>
+
         </div>
     </div>
-    <br />
-
-    <div class="panel-group" style="width:270px; margin-left:30%;">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="width:270px"><h3>Search Doctor</h3></div>
-            <div class="panel-body">
-
-            </div>
-        </div>
-    </div>
-</div>
+</body>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -155,6 +158,31 @@
                     window.location.href = "/Login/Login";
                 }
                 else if (response != "fail") {
+                    window.location.href = "/AnotherArea/Home2/Inde2";
+                }
+            }
+
+        })
+    };
+
+    var LoginUser = function () {
+        // debugger
+        var data = $("#myForm").serialize();
+
+        $.ajax({
+            type: "Post",
+            url: "/Login/Login",
+            data: data,
+            success: function (response) {
+                // debugger
+                if (response == "fail") {
+                    alert("Login or Password INVALID! Please try again.")
+                    window.location.href = "/Login/Login";
+                }
+                if (response == "reg_user") {
+                    window.location.href = "/Home/Index";
+                }
+                if (response == "fin_user") {
                     window.location.href = "/AnotherArea/Home2/Inde2";
                 }
             }

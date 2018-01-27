@@ -5,29 +5,32 @@
     var str = "";
 }
 
-<h2>Show all turn</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<h2>Show all turn</h2>*@
+<div style="margin-top:30px; margin-left:10%;">
+    <img src="~/Content/Images/14.jpg" style="width:90% ; height:70%" class="img-rounded" alt="Cinque Terre" />
+</div>
+
+<br />
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.userId)
+            ID Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.city)
+            City
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.comment)
+            Medical Summary
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.medicineName)
+            Prescription
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Practics.practicsName)
+            Medical Practice
         </th>
 
         <th></th>
@@ -71,3 +74,8 @@
         </tr>
     }
 </table>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a class="btn btn-primary" href="~/Turn/Create" style="margin-left:45%; margin-top:10px">Create New Turn &raquo;</a>
+</p>
