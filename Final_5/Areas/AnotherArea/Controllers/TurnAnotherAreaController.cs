@@ -18,38 +18,65 @@ namespace Final_5.Areas.AnotherArea.Controllers
         public async Task<ActionResult> turn(string str)
         {
             Turn t = new Turn();
+            DateTimeByDoctor d = new DateTimeByDoctor();
+
             string userId = Session["userId"].ToString();
 
             List<Models.Turn> turn = await db.Turn.ToListAsync();
-            IEnumerable<string> userNames = turn.Select(x => x.practicsName);
+            // IEnumerable<string> userNames = turn.Select(x => x.practicsName);
             var y = str.Split(' ');
             string actualpracticsName = y[0];
             string actualTime = y[1];
-            bool exists = userNames.Contains(actualpracticsName);
 
-            if (exists)
+            // var practisTable = db.Practics.Where(x => x.practicsName.Equals(actualpracticsName)).ToList();
+            var res = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(actualpracticsName))
+                                               .Where(x => x.turnId.Equals("0"))
+                                               .Where(x => x.insertDate.ToString().Contains(actualTime)).ToList();
+            //var yyy = practisTable.Count;
+            // var zzz = res.Count;
+            if (res.Count == 1)
             {
-                var time = turn.Where(x => x.hour == actualTime).First();
-                bool timeExits = time.hour.Contains(actualTime);
-                if (timeExits)
-                {
-                    t.userId = userId;
-                    t.hour = actualTime;
-                    t.practicsName = actualpracticsName;
-                    db.Turn.Add(t);
-                    await db.SaveChangesAsync();
-                    return Content("The doctor is free at this time");
-                }
-                else
-                {
-                    return Content("The doctor is full");
-                }
+                t.userId = userId;
+                t.hour = actualTime;
+                t.practicsName = actualpracticsName;
+                t.date = "";
+                t.city = "";
+                t.comment = "";
+                t.medicineName = "none";
+                db.Turn.Add(t);
 
+                await db.SaveChangesAsync();
+                return RedirectToAction("succefullyInsert");
             }
             else
-            {
-                return Content("No such doctor");
-            }
+                return RedirectToAction("failedInsert");
+
+
+            //bool exists = userNames.Contains(actualpracticsName);
+
+            //if (exists)
+            //{
+            //    var time = turn.Where(x => x.hour == actualTime).First();
+            //    bool timeExits = time.hour.Contains(actualTime);
+            //    if (timeExits)
+            ////    {
+            //t.userId = userId;
+            //        t.hour = actualTime;
+            //        t.practicsName = actualpracticsName;
+            //        db.Turn.Add(t);
+            //        await db.SaveChangesAsync();
+            //        return Content("The doctor is free at this time");
+            //    }
+            //    else
+            //    {
+            //        return Content("The doctor is full");
+            //    }
+
+            //}
+            //else
+            //{
+            //    return Content("No such doctor");
+            //}
 
         }
 

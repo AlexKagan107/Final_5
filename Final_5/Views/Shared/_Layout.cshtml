@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body style="background-color:lightgoldenrodyellow">
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,38 +20,36 @@
 
                 @if (Session["userId"] != null)
                 {
-                    @Html.ActionLink("Hello " + Session["userId"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Hello " + Session["userName"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
                 else
                 {
                     @Html.ActionLink("Welcome", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         <li><a href="/Login/Login">LOGIN</a></li>
-                        <li><a href="/Users/Create">REGISTER</a></li>
+                        @*<li><a href="/Users/Create">REGISTER </a></li>*@
                     </ul>
                 }
-
             </div>
             @if (Session["permissions"] != null && (Session["permissions"].Equals("1") || Session["permissions"].Equals("3")))
             {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Turn", "Create", "Turn")</li>
-                        <li>@Html.ActionLink("Show all Turn", "Index", "Turn")</li>
-                        <li>@Html.ActionLink("search user", "search_1", "Serach")</li>
-                        <li>@Html.ActionLink("Medical", "allMedicalSheet", "MedicalSheet")</li>
-                        <li>@Html.ActionLink("Doctor", "Create", "DateTimeByDoctor")</li>
-                        <li>@Html.ActionLink("Send", "Create", "SendData")</li>
-                        <li>@Html.ActionLink("Read", "Index", "SendData")</li>
+                        <li>@Html.ActionLink("Create Turn", "Create", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Show All Turn", "Index", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Search User", "search_1", "Serach", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Medical Summary", "allMedicalSheet", "MedicalSheet", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Doctor", "Create", "DateTimeByDoctor", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
 
 
                     @if (Session["userId"] != null)
                     {
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Welcome : @Session["userId"]</a></li>
-                            <li><a href="/Login/Logout">Logout</a></li>
+                            @*<li><a href="#">Welcome : @Session["userName"]</a></li>*@
+                            <li><a href="/Users/Index">ALL USERS</a></li>
+                            <li><a href="/Users/Create">REGISTER</a></li>
+                            <li><a href="/Login/Logout">LOGOUT</a></li>
                         </ul>
                     }
 
@@ -61,18 +59,17 @@
             {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Turn", "Create", "Turn")</li>
-                        <li>@Html.ActionLink("Show all Turn", "Index", "Turn")</li>
-                        <li>@Html.ActionLink("Medical", "allMedicalSheet", "MedicalSheet")</li>
-                        <li>@Html.ActionLink("Send", "Create", "SendData")</li>
+                        <li>@Html.ActionLink("Create Turn", "Create", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Show All Turn", "Index", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Medical Summary", "allMedicalSheet", "MedicalSheet", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
 
 
                     @if (Session["userId"] != null)
                     {
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Welcome : @Session["userId"]</a></li>
-                            <li><a href="/Login/Logout">Logout</a></li>
+                            @*<li><a href="#">Welcome : @Session["userName"]</a></li>*@
+                            <li><a href="/Login/Logout">LOGOUT</a></li>
                         </ul>
                     }
 

@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     var concatString = "";
+    var count = 1;
+
 }
 
 <h2>Index</h2>
@@ -31,7 +33,7 @@
     {
         if (item.turnId.Equals("0"))
         {
-            var x = item.practicsName + item.insertDate + ' ';
+            var x = count + "available doctor you have is for practis..." + item.practicsName + "in date..." + item.insertDate.ToShortTimeString() + ' ';
             concatString += x;
             <tr>
                 <td>
