@@ -42,13 +42,13 @@ namespace Final_5.Controllers
 
                 if (user.Count == 1 && (user[0].fileFinger == "" || user[0].fileFinger == "not"))
                 {
-                    Session["userId"] = user[0].firstName.ToString();
+                    Session["userId"] = user[0].userId.ToString();
                     Session["permissions"] = user[0].permissions.ToString();
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    Session["userId"] = user[0].firstName.ToString();
+                    Session["userId"] = user[0].userId.ToString();
                     Session["permissions"] = user[0].permissions.ToString();
                     return RedirectToAction("Inde2", "Home2", new { area = "AnotherArea" });
 

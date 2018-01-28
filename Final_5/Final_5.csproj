@@ -169,6 +169,7 @@
     <Compile Include="Controllers\MedicalSheetController.cs" />
     <Compile Include="Controllers\MedicineController.cs" />
     <Compile Include="Controllers\PracticsController.cs" />
+    <Compile Include="Controllers\SendDataController.cs" />
     <Compile Include="Controllers\SerachController.cs" />
     <Compile Include="Controllers\TurnController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -209,6 +210,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchUser.cs" />
+    <Compile Include="Models\SendData.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Turn.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -358,6 +362,11 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Doctor\SearchDoctor.cshtml" />
+    <Content Include="Views\SendData\Create.cshtml" />
+    <Content Include="Views\SendData\Delete.cshtml" />
+    <Content Include="Views\SendData\Details.cshtml" />
+    <Content Include="Views\SendData\Edit.cshtml" />
+    <Content Include="Views\SendData\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\AnotherArea\Models\" />
