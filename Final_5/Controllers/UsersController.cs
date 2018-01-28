@@ -44,7 +44,7 @@ namespace Final_5.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "firstName");
+            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "idDoctor");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace Final_5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "firstName", users.idDoctor);
+            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "idDoctor", users.idDoctor);
             return View(users);
         }
 
@@ -78,7 +78,7 @@ namespace Final_5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "firstName", users.idDoctor);
+            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "idDoctor", users.idDoctor);
             return View(users);
         }
 
@@ -95,7 +95,7 @@ namespace Final_5.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "firstName", users.idDoctor);
+            ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "idDoctor", users.idDoctor);
             return View(users);
         }
 

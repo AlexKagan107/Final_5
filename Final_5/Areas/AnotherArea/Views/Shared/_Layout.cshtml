@@ -17,13 +17,21 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                @if (Session["userId"] != null)
+                @if (Session["userName"] != null)
                 {
                     @Html.ActionLink("Hello " + Session["userName"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
-
                 @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
+            <div class="navbar-collapse collapse">
+                @if (Session["userName"] != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Login/Logout"><p style="font-size:20px">LOGOUT</p></a></li>
+                    </ul>
+                }
+            </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
             </div>
@@ -34,7 +42,7 @@
         @RenderBody()
         <hr />
         <footer>
-            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@<p></p>
         </footer>
     </div>
 
