@@ -23,6 +23,7 @@
           <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="insertDate" Type="datetime" Nullable="false" />
           <Property Name="turnId" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -75,7 +76,7 @@
           </Key>
           <Property Name="userId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="fileFinger" Type="nvarchar(max)" />
+          <Property Name="fileFinger" Type="nvarchar(max)" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -92,6 +93,18 @@
             </Principal>
             <Dependent Role="DateTimeByDoctor">
               <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DateTimeByDoctor_ToTable">
+          <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
+          <End Role="DateTimeByDoctor" Type="Self.DateTimeByDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="DateTimeByDoctor">
+              <PropertyRef Name="practicsName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -180,6 +193,10 @@
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
           </AssociationSet>
+          <AssociationSet Name="FK_DateTimeByDoctor_ToTable" Association="Self.FK_DateTimeByDoctor_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
+          </AssociationSet>
           <AssociationSet Name="FK_Doctor_ToTable" Association="Self.FK_Doctor_ToTable">
             <End Role="Practics" EntitySet="Practics" />
             <End Role="Doctor" EntitySet="Doctor" />
@@ -237,6 +254,7 @@
           <Property Name="practicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_ToTable" FromRole="Practics" ToRole="Doctor" />
           <NavigationProperty Name="Turn" Relationship="Self.FK_Turn_2_ToTable" FromRole="Practics" ToRole="Turn" />
+          <NavigationProperty Name="DateTimeByDoctor" Relationship="Database1Model.FK_DateTimeByDoctor_ToTable" FromRole="Practics" ToRole="DateTimeByDoctor" />
         </EntityType>
         <EntityType Name="Turn">
           <Key>
@@ -315,6 +333,10 @@
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_DateTimeByDoctor_ToTable" Association="Database1Model.FK_DateTimeByDoctor_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Medicine">
           <Key>
@@ -383,6 +405,8 @@
           <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="turnId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Doctor" Relationship="Database1Model.FK_CreateDateTimeByDoctor_ToTable" FromRole="DateTimeByDoctor" ToRole="Doctor" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Practics" Relationship="Database1Model.FK_DateTimeByDoctor_ToTable" FromRole="DateTimeByDoctor" ToRole="Practics" />
         </EntityType>
         <Association Name="FK_CreateDateTimeByDoctor_ToTable">
           <End Type="Database1Model.Doctor" Role="Doctor" Multiplicity="1" />
@@ -402,7 +426,7 @@
           </Key>
           <Property Name="userId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fileFinger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fileFinger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -420,6 +444,18 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DateTimeByDoctor_ToTable">
+          <End Type="Database1Model.Practics" Role="Practics" Multiplicity="1" />
+          <End Type="Database1Model.DateTimeByDoctor" Role="DateTimeByDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="DateTimeByDoctor">
+              <PropertyRef Name="practicsName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -492,6 +528,7 @@
           <EntitySetMapping Name="DateTimeByDoctor">
             <EntityTypeMapping TypeName="Database1Model.DateTimeByDoctor">
               <MappingFragment StoreEntitySet="DateTimeByDoctor">
+                <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="turnId" ColumnName="turnId" />
                 <ScalarProperty Name="insertDate" ColumnName="insertDate" />
                 <ScalarProperty Name="practicsName" ColumnName="practicsName" />

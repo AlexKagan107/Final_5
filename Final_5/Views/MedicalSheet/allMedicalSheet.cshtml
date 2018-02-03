@@ -20,8 +20,11 @@
             <th>
                 Date of Visit
             </th>
-            <th>
+            @*<th>
                 Comment
+            </th>*@
+            <th>
+                Medical Practice
             </th>
             <th>
                 Prescriptions
@@ -42,8 +45,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.dateTime)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.comment)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turn.practicsName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Medicine.medicineName)

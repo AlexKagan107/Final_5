@@ -252,6 +252,8 @@
     <Content Include="Content\Images\medical-prescriptions 1.jpg" />
     <Content Include="Content\Images\medical-prescriptions 2.jpg" />
     <Content Include="Content\Images\patient1.jpg" />
+    <Content Include="Content\Images\patient2.jpg" />
+    <Content Include="Content\Images\patients.jpg" />
     <Content Include="Content\Images\people.jpg" />
     <Content Include="Content\Images\people2.jpg" />
     <Content Include="Content\Images\people3.jpg" />
@@ -377,6 +379,8 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Doctor\SearchDoctor.cshtml" />
+    <Content Include="Views\Turn\AllUsers.cshtml" />
+    <Content Include="Views\DateTimeByDoctor\DoctorByBrunche.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\AnotherArea\Models\" />

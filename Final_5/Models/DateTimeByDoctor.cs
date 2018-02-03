@@ -19,7 +19,9 @@ namespace Final_5.Models
         public string practicsName { get; set; }
         public System.DateTime insertDate { get; set; }
         public string turnId { get; set; }
+        public string city { get; set; }
     
         public virtual Doctor Doctor { get; set; }
+        public virtual Practics Practics { get; set; }
     }
 }

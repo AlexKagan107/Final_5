@@ -26,6 +26,7 @@ namespace Final_5.Controllers
             {
                 if (str.userId != null)
                 {
+                    Session["userNowId"] = str.userId.ToString();
                     return RedirectToAction("allTurnByUser", "Turn", new { userId = str.userId });
                 }
                 else
