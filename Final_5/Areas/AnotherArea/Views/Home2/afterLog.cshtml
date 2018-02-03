@@ -1,19 +1,9 @@
-﻿@model Final_5.Models.Users
-
+﻿
 @{
-    ViewBag.Title = "Index2";   
-
-}
-<h2>User_2</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-
-
+    ViewBag.Title = "afterLog";
 }
 
+<h2>afterLog</h2>
 
 
 <html lang="en">
@@ -50,6 +40,7 @@
     }
 
     window.onload = function () {
+        speak();
         if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
             upgrade();
         } else {
@@ -127,6 +118,7 @@
                 if (interim_span.innerHTML == "medicine")
                     window.location = "http://localhost:11092/AnotherArea/MedicalSheetsAnotherArea";
 
+
                 if (transcription.innerHTML.indexOf("create") > -1 || interim_span.innerHTML.indexOf("create") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
@@ -169,19 +161,18 @@
         }
     };
     function speak() {
-        content = "Before you start using the application to get better service try to speak in an American accent at your service a site for ordering medical services";
+        content = "Hello"+'@Session["userName"].ToString()';
         var msg = new SpeechSynthesisUtterance();
         msg.text = content;
         window.speechSynthesis.speak(msg);
         bool = false;
     }
-    
-        
-    
+
+
+
 </script>
 
 
 
 
 </html>
-

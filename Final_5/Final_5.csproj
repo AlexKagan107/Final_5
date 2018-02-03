@@ -303,6 +303,10 @@
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Details.cshtml" />
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Edit.cshtml" />
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Index.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\succefullyInsert.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\failedInsert.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\Home2\afterLog.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\DateTimeByDoctorsAnotherArea\Practis.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

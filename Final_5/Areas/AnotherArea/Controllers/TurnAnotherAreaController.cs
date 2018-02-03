@@ -27,23 +27,35 @@ namespace Final_5.Areas.AnotherArea.Controllers
             var y = str.Split(' ');
             string actualpracticsName = y[0];
             string actualTime = y[1];
+            string day = y[2];
+            string month = y[4];
 
             // var practisTable = db.Practics.Where(x => x.practicsName.Equals(actualpracticsName)).ToList();
             var res = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(actualpracticsName))
                                                .Where(x => x.turnId.Equals("0"))
-                                               .Where(x => x.insertDate.ToString().Contains(actualTime)).ToList();
+                                               .Where(x => x.insertDate.ToString().Contains(actualTime)).ToList()
+                                               .Where(x => x.insertDate.Day.ToString().Equals(day)).ToList()
+                                               .Where(x => x.insertDate.Month.ToString().Equals(month)).ToList();
             //var yyy = practisTable.Count;
             // var zzz = res.Count;
             if (res.Count == 1)
             {
+                string date = day.ToString()+"/"+month.ToString()+"/18"+ " " + actualTime;
+                DateTime dt = Convert.ToDateTime(date);
                 t.userId = userId;
-                t.hour = actualTime;
+                t.hour = "";
                 t.practicsName = actualpracticsName;
-                t.date = "";
+                t.date = dt.ToString();
                 t.city = "";
                 t.comment = "";
                 t.medicineName = "none";
                 db.Turn.Add(t);
+
+
+                int idDateTimeByDoc = res[0].Id;
+                DateTimeByDoctor dateTimeByDoctor = await db.DateTimeByDoctor.FindAsync(idDateTimeByDoc);
+                dateTimeByDoctor.turnId = "1";
+                db.Entry(dateTimeByDoctor).State = EntityState.Modified;// מעדכן
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("succefullyInsert");
@@ -206,6 +218,23 @@ namespace Final_5.Areas.AnotherArea.Controllers
             db.Turn.Remove(turn);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult succefullyInsert()
+        {
+      
+            
+                return View();
+            
+        }
+
+        public ActionResult failedInsert()
+        {
+
+
+            return View();
+
         }
 
         protected override void Dispose(bool disposing)
