@@ -3,33 +3,38 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Show all turn</h2>
-@*<div style="margin-top:30px; margin-left:17%">
-    <img src="~/Content/Images/14.jpg" style="width:80% ; height:70%" />
-</div>*@
+@*<h2>Show all turn</h2>*@
+<div style="margin-top:30px; margin-left:17%;">
+    <img src="~/Content/Images/patient2.jpg" style="width:77% ; height:70%" class="img-rounded" alt="Cinque Terre" />
+</div>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+@*<div style="margin-left:0%; margin-top:15px">
+    <p>
+        <a class="btn btn-info" href="~/Turn/Create">Create New Turn</a>
+    </p>
+</div>*@
+<table class="table" style="margin-top:15px">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.userId)
+            ID Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.city)
+            Medical Practice
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.comment)
+            City
         </th>
+        @*<th>
+            Medical Summary
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.medicineName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Practics.practicsName)
+            Prescription
         </th>
 
         <th></th>
@@ -48,16 +53,16 @@
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Practics.practicsName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.city)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.comment)
-            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Medicine.medicineName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Practics.practicsName)
             </td>
 
             @*@if (dateCurrent <= listDate)

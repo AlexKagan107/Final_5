@@ -26,7 +26,7 @@
         @Html.HiddenFor(model => model.city)
 
         <hr />
-        <div class="row">
+        <div class="form-horizontal">
             <div class="form-group">
                 @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -39,13 +39,14 @@
                 @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" , disabled = "true" } })
+                    @*<input type="date" class="form-control" name="date" />*@
                     @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
 
-        <div class="row">
+        <div class="form-horizontal">
             <div class="form-group">
                 @Html.LabelFor(model => model.practicsName, "practicsName", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -54,13 +55,13 @@
                 </div>
             </div>
 
-            @*<div class="form-group">
+            <div class="form-group">
                 @Html.LabelFor(model => model.city, "city", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("city", null, htmlAttributes: new { @class = "form-control", disabled = "true" })
                     @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -87,9 +88,18 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@if (Session["userNowId"] == null)
+{
+    <div>
+        @Html.ActionLink("Back to List", "AllUsers")
+    </div>
+}
+else
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

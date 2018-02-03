@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Final_5.Models.SendData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.toUserId)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.sendData1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateInsert)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderByDescending(x=>x.dateInsert))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.toUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sendData1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateInsert)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit" ,new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -4,14 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>User Information</h2>
 
 <div>
-    <h4>Users</h4>
+    @*<h4>Users</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.password)
+            ID Number:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+        <dt>
+            Password:
         </dt>
 
         <dd>
@@ -19,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fileFinger)
+            FingerPrint:
         </dt>
 
         <dd>
@@ -27,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.firstName)
+            First Name:
         </dt>
 
         <dd>
@@ -35,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastName)
+            Last Name:
         </dt>
 
         <dd>
@@ -43,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.address)
+           Address:
         </dt>
 
         <dd>
@@ -51,15 +58,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.phone)
+            Phone Number:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.phone)
+            @Html.DisplayFor(model => model.phone)     
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.permissions)
+            Permission:
         </dt>
 
         <dd>
@@ -67,11 +74,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Doctor.firstName)
+            Doctor ID:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Doctor.firstName)
+            @Html.DisplayFor(model => model.Doctor.idDoctor)
         </dd>
 
     </dl>

@@ -14,6 +14,12 @@ namespace Final_5.Models
     
     public partial class Users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Users()
+        {
+            this.SendData = new HashSet<SendData>();
+        }
+    
         public string userId { get; set; }
         public string password { get; set; }
         public string fileFinger { get; set; }
@@ -25,5 +31,7 @@ namespace Final_5.Models
         public string permissions { get; set; }
     
         public virtual Doctor Doctor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SendData> SendData { get; set; }
     }
 }

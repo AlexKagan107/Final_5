@@ -1,20 +1,15 @@
 ﻿@model Final_5.Models.Users
 
 @{
-    ViewBag.Title = "Index2";   
-
+    ViewBag.Title = "Index2";
 }
-<h2>User_2</h2>
+
+@*<h2>Hello @Session["userName"].ToString()</h2>*@
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-
-
 }
-
-
 
 <html lang="en">
 <head>
@@ -23,15 +18,20 @@
     <style>
         body {
             font-family: monospace;
-            font-size: 22px;
-            background-color: whitesmoke;
+            font-size: 80px;
+            color: white;
+            background-color: white;
             -webkit-transition: background-color 400ms ease;
             transition: background-color 400ms ease;
+            margin-top:150px;
+
         }
 
         main {
-            background-color: rgba(255, 255, 255, 0.4);
-            padding: 20px;
+            /*background-color: rgba(255, 255, 255, 0.4);*/
+            background-color:black;
+            padding: 40px;
+            color:white;
             display: inline-block;
         }
     </style>
@@ -44,7 +44,7 @@
 </body>
 
 <script>
-    var flag = false;
+
     function upgrade() {
         alert('Please upgrade to Google Chrome for best possible experience.');
     }
@@ -127,6 +127,7 @@
                 if (interim_span.innerHTML == "medicine")
                     window.location = "http://localhost:11092/AnotherArea/MedicalSheetsAnotherArea";
 
+
                 if (transcription.innerHTML.indexOf("create") > -1 || interim_span.innerHTML.indexOf("create") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
@@ -134,12 +135,6 @@
                     }
                 }
 
-                if (transcription.innerHTML.indexOf("practice") > -1 || interim_span.innerHTML.indexOf("practice") > -1) {
-                    var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
-                    if (name != undefined && name != "") {
-                        window.location = "http://localhost:11092/AnotherArea/DateTimeByDoctorsAnotherArea/Practis?str=" + name;
-                    }
-                }
 
                 var makeArray = final_transcript.split(' ');
                 var bColor = makeArray.splice(-3);
@@ -175,12 +170,7 @@
         window.speechSynthesis.speak(msg);
         bool = false;
     }
-    
-        
-    
 </script>
-
-
 
 
 </html>

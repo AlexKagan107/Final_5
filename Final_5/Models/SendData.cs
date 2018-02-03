@@ -12,16 +12,16 @@ namespace Final_5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DateTimeByDoctor
+    public partial class SendData
     {
         public int Id { get; set; }
+        public string userId { get; set; }
         public string idDoctor { get; set; }
-        public string practicsName { get; set; }
-        public System.DateTime insertDate { get; set; }
-        public string turnId { get; set; }
-        public string city { get; set; }
+        public string sendData1 { get; set; }
+        public Nullable<bool> isSign { get; set; }
+        public System.DateTime dateInsert { get; set; }
+        public string toUserId { get; set; }
     
-        public virtual Doctor Doctor { get; set; }
-        public virtual Practics Practics { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

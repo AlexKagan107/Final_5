@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body style="background-color:lightgoldenrodyellow">
+<body style="background-color:lightgoldenrodyellow; width:100%; height: auto;">
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -36,10 +36,14 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Create Turn", "Create", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Show All Turn", "Index", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("All Turn", "AllUsers", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Search User", "search_1", "Serach", new { area = "" }, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Medical Summary", "allMedicalSheet", "MedicalSheet", new { area = "" }, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Doctor", "Create", "DateTimeByDoctor", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Send", "Create", "SendData", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Read", "Index", "SendData", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+
                     </ul>
 
 
@@ -47,6 +51,7 @@
                     {
                         <ul class="nav navbar-nav navbar-right">
                             @*<li><a href="#">Welcome : @Session["userName"]</a></li>*@
+                            <li><a href="/Users/Index">ALL USERS</a></li>
                             <li><a href="/Users/Create">REGISTER</a></li>
                             <li><a href="/Login/Logout">LOGOUT</a></li>
                         </ul>
@@ -59,8 +64,10 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Create Turn", "Create", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Show All Turn", "Index", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("All User Turn", "Index", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Medical Summary", "allMedicalSheet", "MedicalSheet", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Send", "Create", "SendData", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Read", "Index", "SendData", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
 
 

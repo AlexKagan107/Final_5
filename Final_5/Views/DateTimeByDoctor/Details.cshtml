@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Information about the turn</h2>
 
-<div>
-    <h4>DateTimeByDoctor</h4>
+<div style="margin-left:30%; font-size:17px">
+    @*<h4>DateTimeByDoctor</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.practicsName)
+            Doctor Practic:
         </dt>
 
         <dd>
@@ -19,7 +19,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.insertDate)
+            Doctor ID:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idDoctor)
+        </dd>
+
+        <dt>
+            Doctor Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.firstName)
+        </dd>
+
+        <dt>
+            Date Of Turn:
         </dt>
 
         <dd>
@@ -27,24 +43,26 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.turnId)
+            City:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            Turn ID:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.turnId)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Doctor.firstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Doctor.firstName)
-        </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+<h4 style="margin-left:35%">
+    @Html.ActionLink("Edit the turn", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</h4>

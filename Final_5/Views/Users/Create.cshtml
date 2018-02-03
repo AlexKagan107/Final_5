@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.password,"Password", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
@@ -35,16 +35,16 @@
         </div>
 
         <div class="form-group">
-                @Html.LabelFor(model => model.fileFinger,"Finger Print", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.fileFinger, new { htmlAttributes = new { @class = "form-control" } })*@
-                    <input type="text" class="form-control" value="not" name="fileFinger" />
-                    @Html.ValidationMessageFor(model => model.fileFinger, "", new { @class = "text-danger" })
-                </div>
+            @Html.LabelFor(model => model.fileFinger, "Finger Print", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.fileFinger, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" class="form-control" value="not" name="fileFinger" />
+                @Html.ValidationMessageFor(model => model.fileFinger, "", new { @class = "text-danger" })
             </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.firstName,"First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.firstName, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.lastName,"Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.lastName, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
@@ -60,7 +60,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.address,"Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
@@ -68,7 +68,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.phone,"Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.phone, "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
@@ -84,15 +84,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.permissions,"Permission", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.permissions, "Permission", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.permissions, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.permissions, new { htmlAttributes = new { @class = "form-control" } })*@
+                <select class="form-control" id="select" name="permissions">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
                 @Html.ValidationMessageFor(model => model.permissions, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-10" style="margin-left:27%;" >
+            <div class="col-md-10" style="margin-left:27%;">
                 <input type="submit" value="Create" class="btn btn-primary btn-lg" />
             </div>
         </div>
@@ -137,7 +143,7 @@
             data: data,
             success: function (response) {
                 // debugger
-                 if (response != "fail") {
+                if (response != "fail") {
                     window.location.href = "/Users/Create";
                 }
             }
