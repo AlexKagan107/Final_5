@@ -1,0 +1,50 @@
+﻿@model Final_5.Models.SendData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SendData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idDoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idDoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sendData1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sendData1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isSign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isSign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
