@@ -22,16 +22,22 @@ namespace Final_5.Controllers
             string userId = "";
             if (Session["userId"] != null)
             {
-                userId = Session["userId"].ToString();
-                var result = db.SendData.Where(x => x.idDoctor.Equals(userId)).ToList();
-                return View(result);
+                if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
+                {
+                    userId = Session["userId"].ToString();
+                    var result = db.SendData.Where(x => x.idDoctor.Equals(userId)).ToList();
+                    return View(result);
+                }
+                else if (Session["permissions"].Equals("2"))
+                {
+                    userId = Session["userId"].ToString();
+                    var result2 = db.SendData.Where(x => x.toUserId.Equals(userId)).ToList();
+                    return View(result2);
+                }
 
             }
-            else
-            {
-                return View();
-            }
-         
+            return View();
+
         }
 
         // GET: SendData/Details/5
@@ -61,12 +67,13 @@ namespace Final_5.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,userId,idDoctor,sendData1,isSign")] SendData sendData)
+        public async Task<ActionResult> Create([Bind(Include = "Id,userId,idDoctor,sendData1,isSign,toUserId")] SendData sendData)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && (!(sendData.sendData1 == null)))
             {
                 var resultIdDoc = db.Users.Where(x => x.userId.Equals(sendData.userId)).ToList();
                 sendData.userId = Session["userId"].ToString();
+                sendData.toUserId = resultIdDoc[0].idDoctor;
                 sendData.idDoctor = resultIdDoc[0].idDoctor;
                 sendData.dateInsert = DateTime.Now;
                 sendData.isSign = false;
@@ -74,7 +81,6 @@ namespace Final_5.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
-
             ViewBag.userId = new SelectList(db.Users, "userId", "password", sendData.userId);
             return View(sendData);
         }
@@ -91,6 +97,8 @@ namespace Final_5.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.sendDataHis = "From user: " + sendData.userId + "message: " + sendData.sendData1;
+            sendData.sendData1 = "";
             ViewBag.userId = new SelectList(db.Users, "userId", "password", sendData.userId);
             return View(sendData);
         }
@@ -100,13 +108,43 @@ namespace Final_5.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,userId,idDoctor,dateInsert,sendData1,isSign")] SendData sendData)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,userId,idDoctor,dateInsert,sendData1,isSign,toUserId")] SendData sendData)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && (!(sendData.sendData1 == null)))
             {
-                db.Entry(sendData).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                //db.Entry(sendData).State = EntityState.Modified;
+                //await db.SaveChangesAsync();
+                //return RedirectToAction("Index");
+
+                string fromUserId = sendData.userId;
+
+
+                if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
+                {
+                    SendData s = new SendData();
+                    s.userId = Session["userId"].ToString();
+                    s.idDoctor = Session["userId"].ToString();
+                    s.toUserId = fromUserId;
+                    s.dateInsert = DateTime.Now;
+                    s.sendData1 = sendData.sendData1;
+                    sendData.isSign = false;
+                    db.SendData.Add(s);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    SendData s = new SendData();
+                    s.userId = Session["userId"].ToString();
+                    s.idDoctor = sendData.idDoctor;
+                    s.toUserId = fromUserId;
+                    s.dateInsert = DateTime.Now;
+                    sendData.isSign = false;
+                    s.sendData1 = sendData.sendData1;
+                    db.SendData.Add(s);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index", "Home");
+                }
             }
             return View();
         }

@@ -66,6 +66,7 @@
           <Property Name="sendData" Type="nvarchar(max)" Nullable="false" />
           <Property Name="isSign" Type="bit" />
           <Property Name="dateInsert" Type="datetime" Nullable="false" />
+          <Property Name="toUserId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Turn">
           <Key>
@@ -468,6 +469,7 @@
           <Property Name="isSign" Type="Boolean" />
           <NavigationProperty Name="Users" Relationship="Database1Model.FK_SendData_ToTable" FromRole="SendData" ToRole="Users" />
           <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toUserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_SendData_ToTable">
           <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
@@ -576,6 +578,7 @@
           <EntitySetMapping Name="SendData">
             <EntityTypeMapping TypeName="Database1Model.SendData">
               <MappingFragment StoreEntitySet="SendData">
+                <ScalarProperty Name="toUserId" ColumnName="toUserId" />
                 <ScalarProperty Name="dateInsert" ColumnName="dateInsert" />
                 <ScalarProperty Name="isSign" ColumnName="isSign" />
                 <ScalarProperty Name="sendData1" ColumnName="sendData" />

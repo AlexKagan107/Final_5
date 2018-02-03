@@ -20,6 +20,7 @@ namespace Final_5.Models
         public string sendData1 { get; set; }
         public Nullable<bool> isSign { get; set; }
         public System.DateTime dateInsert { get; set; }
+        public string toUserId { get; set; }
     
         public virtual Users Users { get; set; }
     }

@@ -15,6 +15,10 @@
             @Html.DisplayNameFor(model => model.userId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.toUserId)
+        </th>
+        
+        <th>
             @Html.DisplayNameFor(model => model.sendData1)
         </th>
         <th>
@@ -23,11 +27,14 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.OrderByDescending(x=> x.isSign==false).OrderByDescending(x=>x.dateInsert))
+    @foreach (var item in Model.OrderByDescending(x=>x.dateInsert))
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.toUserId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.sendData1)
@@ -36,15 +43,7 @@
                 @Html.DisplayFor(modelItem => item.dateInsert)
             </td>
             <td>
-                @Html.ActionLink("Read", "Edit", new { id = item.Id })
-                @if (item.isSign.HasValue && item.isSign.Value==true)
-                {
-                    <input type="checkbox" checked disabled/>
-                }
-                else
-                {
-                    <input type="checkbox" disabled />
-                }
+                @Html.ActionLink("Edit", "Edit" ,new { id = item.Id })
             </td>
         </tr>
     }
