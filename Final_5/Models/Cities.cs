@@ -12,16 +12,8 @@ namespace Final_5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DateTimeByDoctor
+    public partial class Cities
     {
-        public int Id { get; set; }
-        public string idDoctor { get; set; }
-        public string practicsName { get; set; }
-        public System.DateTime insertDate { get; set; }
-        public string turnId { get; set; }
-        public string city { get; set; }
-    
-        public virtual Doctor Doctor { get; set; }
-        public virtual Practics Practics { get; set; }
+        public string City { get; set; }
     }
 }

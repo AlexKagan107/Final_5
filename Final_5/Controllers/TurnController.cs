@@ -21,10 +21,21 @@ namespace Final_5.Controllers
             string userId = "";
             if (Session["userId"] != null)
             {
-                userId = Session["userId"].ToString();
-                var result = db.Turn.Where(x => x.userId.Equals(userId)).ToList();
-                var turn = db.Turn.Include(t => t.Practics);
-                return View(result);
+                if (Session["userNowId"] != null)
+                {
+                    userId = Session["userNowId"].ToString();
+                    var result = db.Turn.Where(x => x.userId.Equals(userId)).ToList();
+                    var turn = db.Turn.Include(t => t.Practics);
+                    return View(result);
+                }
+                else
+                {
+                    userId = Session["userId"].ToString();
+                    var result = db.Turn.Where(x => x.userId.Equals(userId)).ToList();
+                    var turn = db.Turn.Include(t => t.Practics);
+                    return View(result);
+                }
+
             }
             else
             {
@@ -225,13 +236,15 @@ namespace Final_5.Controllers
             ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName", turn.practicsName);
             ViewBag.medicineName = new SelectList(db.Medicine, "medicineName", "medicineName", turn.medicineName);
 
-            var result = db.Brunch.Where(x => x.practicsName.Equals(turn.practicsName)).ToList();
-            List<string> resSelect = new List<string>();
-            for (int i = 0; i < result.Count; i++)
-            {
-                resSelect.Add(result[i].city);
-            }
-            ViewBag.city = new SelectList(resSelect, "city");
+            ViewBag.city = new SelectList(db.Brunch, "city", "city", turn.city);
+
+            //var result = db.Brunch.Where(x => x.practicsName.Equals(turn.practicsName)).ToList();
+            //List<string> resSelect = new List<string>();
+            //for (int i = 0; i < result.Count; i++)
+            //{
+            //    resSelect.Add(result[i].city);
+            //}
+            //ViewBag.city = new SelectList(resSelect, "city");
 
             return View(turn);
         }
@@ -253,7 +266,8 @@ namespace Final_5.Controllers
                 MedicalSheet m = new MedicalSheet();
                 m.userId = turn.userId;
                 m.turnId = turn.Id;
-                m.dateTime = DateTime.Now.Date;
+                //m.dateTime = DateTime.Now.Date;
+                m.dateTime = DateTime.Parse(turn.date);
                 m.comment = turn.comment;
                 m.medicineName = turn.medicineName;
                 db2.MedicalSheet.Add(m);
@@ -307,6 +321,11 @@ namespace Final_5.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<ActionResult> AllUsers()
+        {
+            return View(await db.Turn.ToListAsync());
         }
 
         protected override void Dispose(bool disposing)

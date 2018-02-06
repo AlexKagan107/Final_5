@@ -180,6 +180,9 @@
     <Compile Include="Models\Brunch.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cities.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DateTimeByDoctor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -210,6 +213,7 @@
     <Compile Include="Models\Practics.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchDoctor.cs" />
     <Compile Include="Models\SearchUser.cs" />
     <Compile Include="Models\SendData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -308,6 +312,10 @@
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Details.cshtml" />
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Edit.cshtml" />
     <Content Include="Areas\AnotherArea\Views\MedicalSheetsAnotherArea\Index.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\succefullyInsert.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\failedInsert.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\Home2\afterLog.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\DateTimeByDoctorsAnotherArea\Practis.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -386,6 +394,8 @@
     <Content Include="Views\SendData\Details.cshtml" />
     <Content Include="Views\SendData\Edit.cshtml" />
     <Content Include="Views\SendData\Index.cshtml" />
+    <Content Include="Views\DateTimeByDoctor\DoctorByBrunche.cshtml" />
+    <Content Include="Views\DateTimeByDoctor\SearchDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\AnotherArea\Models\" />

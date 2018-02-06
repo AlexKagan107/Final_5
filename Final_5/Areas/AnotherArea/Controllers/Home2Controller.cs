@@ -13,5 +13,10 @@ namespace Final_5.Areas.AnotherArea.Controllers
         {
             return View();
         }
+
+        public ActionResult afterLog()
+        {
+            return View();
+        }
     }
 }

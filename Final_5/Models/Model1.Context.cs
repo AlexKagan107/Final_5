@@ -34,5 +34,6 @@ namespace Final_5.Models
         public virtual DbSet<DateTimeByDoctor> DateTimeByDoctor { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<SendData> SendData { get; set; }
+        public virtual DbSet<Cities> Cities { get; set; }
     }
 }

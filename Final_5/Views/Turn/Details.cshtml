@@ -4,22 +4,20 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Information of the Turn</h2>
 
-<div>
-    <h4>Turn</h4>
+<div style="font-size:17px; margin-left:33%">
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.userId)
+            ID Number:
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.userId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.date)
+            Date:
         </dt>
 
         <dd>
@@ -27,7 +25,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hour)
+            Hour:
         </dt>
 
         <dd>
@@ -35,15 +33,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.city)
+            City:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.city)
         </dd>
+        <dt>
+            Medical Practice:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practics.practicsName)
+        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.comment)
+            Medical Summary:
         </dt>
 
         <dd>
@@ -51,16 +56,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Practics.practicsName)
+            Prescription:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Practics.practicsName)
+            @Html.DisplayFor(model => model.Medicine.medicineName)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@if ((Session["permissions"].Equals("1") || Session["permissions"].Equals("3")) && Session["userNowId"] == null)
+{
+    <h3 style="margin-left:38%">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "AllUsers")
+    </h3>
+}
+else
+{
+    <p style="margin-left:42%;">
+       <a class="btn btn-info btn-lg" href="~/Turn/Index">Back to List</a>
+    </p>
+}
+

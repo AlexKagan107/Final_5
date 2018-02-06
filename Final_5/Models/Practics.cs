@@ -19,6 +19,7 @@ namespace Final_5.Models
         {
             this.Doctor = new HashSet<Doctor>();
             this.Turn = new HashSet<Turn>();
+            this.DateTimeByDoctor = new HashSet<DateTimeByDoctor>();
         }
     
         public string practicsName { get; set; }
@@ -27,5 +28,7 @@ namespace Final_5.Models
         public virtual ICollection<Doctor> Doctor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Turn> Turn { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DateTimeByDoctor> DateTimeByDoctor { get; set; }
     }
 }

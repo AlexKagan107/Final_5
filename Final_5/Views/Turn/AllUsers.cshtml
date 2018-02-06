@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<Final_5.Models.Turn>
 
 @{
-    ViewBag.Title = "Index";
-    var str = "";
+    ViewBag.Title = "AllUsers";
 }
 
-@*<h2>Show all turn</h2>*@
 <div style="margin-top:30px; margin-left:17%;">
     <img src="~/Content/Images/patient2.jpg" style="width:77% ; height:70%" class="img-rounded" alt="Cinque Terre" />
 </div>
@@ -29,9 +27,6 @@
         <th>
             Medical Practice
         </th>
-        @*<th>
-            ID Doctor
-        </th>*@
         <th>
             City
         </th>
@@ -55,9 +50,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Practics.practicsName)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Practics.practicsName)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.city)
             </td>
@@ -67,26 +59,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Medicine.medicineName)
             </td>
-
-            @if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
-            {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Cancel Turn", "Delete", new { id = item.Id })
-                </td>
-            }
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
         </tr>
     }
 </table>
 
-@*<p>
-        <a class="btn btn-primary" href="~/Turn/Create" style="margin-left:42%; margin-top:10px">Create New Turn &raquo;</a>
-    </p>*@
