@@ -30,7 +30,8 @@ namespace Final_5.Areas.AnotherArea.Controllers
             string day = y[3];
             string month = y[4];
 
-
+            if (day.Equals("one"))
+                day = "1";
 
             if ( month.Equals("january"))
             {

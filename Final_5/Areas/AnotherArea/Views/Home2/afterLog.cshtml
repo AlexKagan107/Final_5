@@ -120,10 +120,10 @@
                 if (interim_span.innerHTML == "medicine")
                     window.location = "http://localhost:11092/AnotherArea/MedicalSheetsAnotherArea";
 
-                if (interim_span.innerHTML == "log out")
+                if (interim_span.innerHTML == "out")
                     window.location = "http://localhost:11092/Login/Logout";
 
-                if (transcription.innerHTML.indexOf("create") > -1 || interim_span.innerHTML.indexOf("create") > -1) {
+                if (transcription.innerHTML.indexOf("new") > -1 || interim_span.innerHTML.indexOf("new") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
                         window.location = "http://localhost:11092/AnotherArea/TurnAnotherArea/turn?str=" + name;

@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    var concatString = "";
+    //var concatString = "";
+    var concatString = "available doctor you have is for practis...";
     var count = 1;
 
 }
@@ -40,11 +41,14 @@
     {
         if (item.turnId.Equals("0"))
         {
-            
+
             var day = item.insertDate.Date.Day;
             var mounth = item.insertDate.Date.Month;
-            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth....in city" + item.city;
-            concatString += x;
+            //var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth....in city" + item.city;
+            //concatString += x;
+            var y = item.practicsName + "...";
+            concatString += y;
+
             <tr style="font-size:18px; color:white">
                 <td>
                     @Html.DisplayFor(modelItem => item.practicsName)

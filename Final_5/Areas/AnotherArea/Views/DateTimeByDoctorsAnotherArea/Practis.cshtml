@@ -20,24 +20,27 @@
 
 }
 
-<h2>Index</h2>
+<h2 style="color:orange; margin-top:50px">Available Practics</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
-    <tr>
+    <tr style="font-size:20px; color:orange">
         <th>
-            @Html.DisplayNameFor(model => model.practicsName)
+            Doctor Practic
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.insertDate)
+            Doctor ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.turnId)
+            Doctor Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Doctor.firstName)
+            Date to Turn
+        </th>
+        <th>
+            City
         </th>
         <th></th>
     </tr>
@@ -100,26 +103,29 @@
                 mRes = December;
             }
 
-            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..." + day + "...in..." + mRes;
+            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..." + day + "...in..." + mRes + "...city..."+ item.city;
             concatString += x;
-            <tr>
+            <tr style="font-size:18px; color:white">
                 <td>
                     @Html.DisplayFor(modelItem => item.practicsName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.insertDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.turnId)
+                    @Html.DisplayFor(modelItem => item.idDoctor)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Doctor.firstName)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.insertDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                @*<td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                </td>*@
             </tr>
         }
     }
