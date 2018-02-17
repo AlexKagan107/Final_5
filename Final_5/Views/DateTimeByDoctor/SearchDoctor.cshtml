@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Final_5.Models.DateTimeByDoctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="margin-top:30px; margin-left:17%;">
+    <img src="~/Content/Images/patients.jpg" style="width:77% ; height:70%" class="img-rounded" alt="Cinque Terre" />
+</div>
+
+@if (Model.Count() == 0)
+{
+    <h2 style="margin-left:10%; margin-top:5%">Sorry, The doctor with the reqested practic in the city not found!</h2>
+}
+else
+{
+    <div style="margin-left:0%; margin-top:15px">
+        <p>
+            <a class="btn btn-info btn-lg" href="~/Login/Login">Login</a>
+        </p>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Doctor Practic
+            </th>
+            <th>
+                Doctor ID
+            </th>
+            <th>
+                Doctor Name
+            </th>
+            <th>
+                Date for Turn
+            </th>
+            @*<th>
+                    Turn ID
+                </th>*@
+            <th>
+                City
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.practicsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idDoctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.insertDate)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.turnId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+            </tr>
+        }
+
+    </table>
+}

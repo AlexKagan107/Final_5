@@ -64,19 +64,21 @@
                     </div>
                 </div>*@
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                <div class="form-group" style="margin-left:25%; margin-top:30px">
+                    @*<div class="col-md-offset-2 col-md-10">*@
                         @*<input type="submit" value="Create" class="btn btn-default" />*@
-                        <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-saved"></span> Save </button>
-                    </div>
+                        <button type="submit" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-saved"></span> Save </button>
+                    @*</div>*@
                 </div>
             </div>
         </div>
     </div>
 }
 
-<div style="margin-left:42%">
-    @Html.ActionLink("See All Your Turns", "Index")
+<div style="margin-left:46%">
+    <h3>
+        @Html.ActionLink("See All Your Turns", "Index")
+    </h3>
 </div>
 
 @section Scripts {

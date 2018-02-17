@@ -40,6 +40,28 @@ namespace Final_5.Controllers
 
         }
 
+        public async Task<ActionResult> Chat()
+        {
+
+            //string userId = "";
+            //if (Session["userId"] != null)
+            //{
+            //    if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
+            //    {
+            //        userId = Session["userId"].ToString();
+            //        var result = db.SendData.Where(x => x.idDoctor.Equals(userId)).ToList();
+            //        return View(result);
+            //    }
+            //    else if (Session["permissions"].Equals("2"))
+            //    {
+            //        userId = Session["userId"].ToString();
+            //        var result2 = db.SendData.Where(x => x.toUserId.Equals(userId)).ToList();
+            //        return View(result2);
+            //    }
+            //}
+            return View();
+        }
+
         // GET: SendData/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -58,7 +80,7 @@ namespace Final_5.Controllers
         // GET: SendData/Create
         public ActionResult Create()
         {
-            ViewBag.userId = new SelectList(db.Users, "userId", "password");
+            ViewBag.userId = new SelectList(db.Users, "userId", "userId");
             return View();
         }
 
@@ -81,7 +103,7 @@ namespace Final_5.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.userId = new SelectList(db.Users, "userId", "password", sendData.userId);
+            ViewBag.userId = new SelectList(db.Users, "userId", "userId", sendData.userId);
             return View(sendData);
         }
 
@@ -97,9 +119,10 @@ namespace Final_5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.sendDataHis = "From user: " + sendData.userId + "message: " + sendData.sendData1;
+            ViewBag.sendDataHis1 = "Message From: " + sendData.userId;
+            ViewBag.sendDataHis2 = "The Message: " + sendData.sendData1;
             sendData.sendData1 = "";
-            ViewBag.userId = new SelectList(db.Users, "userId", "password", sendData.userId);
+            ViewBag.userId = new SelectList(db.Users, "userId", "userId", sendData.userId);
             return View(sendData);
         }
 

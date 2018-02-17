@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "failedInsert";
+}
+
+<h2>failedInsert</h2>
+
+<script>
+
+
+    window.onload = function speak() {
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = "Something went worng please try again";
+        window.speechSynthesis.speak(msg);
+    }
+
+</script>

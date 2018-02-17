@@ -266,7 +266,8 @@ namespace Final_5.Controllers
                 MedicalSheet m = new MedicalSheet();
                 m.userId = turn.userId;
                 m.turnId = turn.Id;
-                m.dateTime = DateTime.Now.Date;
+                //m.dateTime = DateTime.Now.Date;
+                m.dateTime = DateTime.Parse(turn.date);
                 m.comment = turn.comment;
                 m.medicineName = turn.medicineName;
                 db2.MedicalSheet.Add(m);

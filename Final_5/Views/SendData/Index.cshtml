@@ -4,30 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div style="margin-top:20px; margin-left:25%;">
+    <img src="~/Content/Images/chatDoc2.jpg" style="width:65% ; height:50%" class="img-rounded" alt="Cinque Terre" />
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+@*<div style="margin-left:42%; margin-top:25px">
+        <h3>Write New Message</h3>
+        <a class="btn" href="~/SendData/Create" style="margin-left:23px;margin-top:-20px"><img src="~/Content/Images/Envelope.png" style="width:100%; height:100%" /></a>
+    </div>*@
+
+<h3 style="margin-top:40px">History of Messages:</h3>
+<table class="table" style="font-size:17px; ">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.userId)
+            Sent To
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.toUserId)
+            Sent From
         </th>
-        
+
         <th>
-            @Html.DisplayNameFor(model => model.sendData1)
+            Message
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dateInsert)
+            Date
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.OrderByDescending(x=>x.dateInsert))
+    @foreach (var item in Model.OrderByDescending(x => x.dateInsert))
     {
         <tr>
             <td>
@@ -43,7 +54,7 @@
                 @Html.DisplayFor(modelItem => item.dateInsert)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit" ,new { id = item.Id })
+                @Html.ActionLink("Reply", "Edit", new { id = item.Id })
             </td>
         </tr>
     }

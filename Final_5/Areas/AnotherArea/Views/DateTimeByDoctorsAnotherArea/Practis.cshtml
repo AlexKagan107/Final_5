@@ -33,10 +33,10 @@
     {
         if (item.turnId.Equals("0"))
         {
-            
+
             var day = item.insertDate.Date.Day;
             var mounth = item.insertDate.Date.Month;
-            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth";
+            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..." + day + "...day..." + mounth + "...mounth";
             concatString += x;
             <tr>
                 <td>
@@ -72,12 +72,12 @@
         if (e.key === "q")
             document.getElementById("readme").click();
 
-        }
+    }
 
-            function speak(content) {
-                var msg = new SpeechSynthesisUtterance();
-                msg.text = content;
-                window.speechSynthesis.speak(msg);
-                window.location = "http://localhost:11092/AnotherArea/Home2/Inde2";
-            }
+    function speak(content) {
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = content;
+        window.speechSynthesis.speak(msg);
+        window.location = "http://localhost:11092/AnotherArea/Home2/Inde2";
+    }
 </script>

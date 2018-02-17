@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5be320c6c592461d9069a9ebe1ff908e" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="5be320c6c592461d9069a9ebe1ff908e" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="Database1Model.Brunch" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Doctor" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Practics" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
@@ -21,6 +21,9 @@
         <EntityTypeShape EntityType="Database1Model.Users" Width="1.5" PointX="6.5" PointY="1.125" />
         <AssociationConnector Association="Database1Model.FK_Users_ToTable" />
         <AssociationConnector Association="Database1Model.FK_DateTimeByDoctor_ToTable" />
+        <EntityTypeShape EntityType="Database1Model.SendData" Width="1.5" PointX="8.75" PointY="1.375" />
+        <AssociationConnector Association="Database1Model.FK_SendData_ToTable" />
+        <EntityTypeShape EntityType="Database1Model.Cities" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

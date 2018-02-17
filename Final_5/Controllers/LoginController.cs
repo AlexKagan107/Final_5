@@ -25,19 +25,32 @@ namespace Final_5.Controllers
         //}
         public ActionResult Login()
         {
+            //var resultCity = db.Brunch.Select(x => x.city).ToList();
+
+            //List<String> listCity = new List<string>();
+            //for (int i = 0; i < resultCity.Count; i++)
+            //{
+            //    listCity.Add(resultCity[i]);
+            //}
+
+            //ViewBag.city = new SelectList(listCity, "city");
+
+            ViewBag.city = new SelectList(db.Cities, "city", "city");
+
             ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName");
 
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(Users model)
+        public async Task<ActionResult> Login1(Users model)
         {
             string result = "fail";
             Users user = await db.Users.SingleOrDefaultAsync(x => x.userId == model.userId && x.password == model.password);
             if (user != null)
             {
-                if (user.fileFinger == "" || user.fileFinger == "not") {
+                if (user.fileFinger == "" || user.fileFinger == "not")
+                {
                     Session["userId"] = user.userId.ToString();
                     Session["userName"] = user.firstName.ToString();
                     Session["permissions"] = user.permissions.ToString();
@@ -120,11 +133,29 @@ namespace Final_5.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> SearchDoctor(string str)
+        public ActionResult SearchDoctor()
         {
-            ViewBag.practicsName = new SelectList(db.Practics, "practicsName", "practicsName");
+            ViewBag.practicsName = new SelectList(db.DateTimeByDoctor, "practicsName", "practicsName");
+            ViewBag.city = new SelectList(db.DateTimeByDoctor, "city", "city");
+
             return View();
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Login(DateTimeByDoctor tmp)
+        {
+            //string flag = "fail";
+
+            //if(tmp != null)
+            //{
+            //    //flag = "true";
+            //    return RedirectToAction("SearchDoctor", "DateTimeByDoctor", new { practicsName = tmp.practicsName, city = tmp.city });
+            //}
+
+            //return Json(flag, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("SearchDoctor", "DateTimeByDoctor", new { practicsName = tmp.practicsName, city = tmp.city });
+        }
+
+
     }
 }

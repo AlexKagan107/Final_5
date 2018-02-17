@@ -4,9 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>User Information</h2>
+<h2>Information about this user</h2>
 
-<div>
+<div style="font-size:17px">
     @*<h4>Users</h4>*@
     <hr />
     <dl class="dl-horizontal">
@@ -50,7 +50,7 @@
         </dd>
 
         <dt>
-           Address:
+            Address:
         </dt>
 
         <dd>
@@ -62,7 +62,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.phone)     
+            @Html.DisplayFor(model => model.phone)
         </dd>
 
         <dt>
@@ -82,8 +82,9 @@
         </dd>
 
     </dl>
+
+    <h3 style="margin-left:5%">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </h3>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

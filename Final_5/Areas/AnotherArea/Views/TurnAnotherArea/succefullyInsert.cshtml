@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "succefullyInsert";
+}
+
+<h2>succefullyInsert</h2>
+<script>
+
+
+    window.onload = function speak() {
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = "You succefully scheduled turn";
+        window.speechSynthesis.speak(msg);
+    }
+
+</script>

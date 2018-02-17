@@ -14,6 +14,12 @@
           <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="DateTimeByDoctor">
           <Key>
             <PropertyRef Name="Id" />
@@ -56,6 +62,18 @@
             <PropertyRef Name="practicsName" />
           </Key>
           <Property Name="practicsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SendData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idDoctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sendData1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isSign" Type="bit" />
+          <Property Name="dateInsert" Type="datetime" Nullable="false" />
+          <Property Name="toUserId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Turn">
           <Key>
@@ -144,6 +162,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SendData_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SendData" Type="Self.SendData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="SendData">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Turn_2_ToTable">
           <End Role="Practics" Type="Self.Practics" Multiplicity="1" />
           <End Role="Turn" Type="Self.Turn" Multiplicity="*" />
@@ -182,11 +212,13 @@
         </Association>
         <EntityContainer Name="Database1ModelStoreContainer">
           <EntitySet Name="Brunch" EntityType="Self.Brunch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DateTimeByDoctor" EntityType="Self.DateTimeByDoctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalSheet" EntityType="Self.MedicalSheet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Practics" EntityType="Self.Practics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SendData" EntityType="Self.SendData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Turn" EntityType="Self.Turn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CreateDateTimeByDoctor_ToTable" Association="Self.FK_CreateDateTimeByDoctor_ToTable">
@@ -208,6 +240,10 @@
           <AssociationSet Name="FK_MedicalSheet_ToTable_1" Association="Self.FK_MedicalSheet_ToTable_1">
             <End Role="Turn" EntitySet="Turn" />
             <End Role="MedicalSheet" EntitySet="MedicalSheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SendData_ToTable" Association="Self.FK_SendData_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SendData" EntitySet="SendData" />
           </AssociationSet>
           <AssociationSet Name="FK_Turn_2_ToTable" Association="Self.FK_Turn_2_ToTable">
             <End Role="Practics" EntitySet="Practics" />
@@ -337,6 +373,12 @@
             <End Role="Practics" EntitySet="Practics" />
             <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
           </AssociationSet>
+          <EntitySet Name="SendData" EntityType="Database1Model.SendData" />
+          <AssociationSet Name="FK_SendData_ToTable" Association="Database1Model.FK_SendData_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SendData" EntitySet="SendData" />
+          </AssociationSet>
+          <EntitySet Name="Cities" EntityType="Database1Model.Cities" />
         </EntityContainer>
         <EntityType Name="Medicine">
           <Key>
@@ -434,6 +476,7 @@
           <Property Name="idDoctor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="permissions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Doctor" Relationship="Database1Model.FK_Users_ToTable" FromRole="Users" ToRole="Doctor" />
+          <NavigationProperty Name="SendData" Relationship="Database1Model.FK_SendData_ToTable" FromRole="Users" ToRole="SendData" />
         </EntityType>
         <Association Name="FK_Users_ToTable">
           <End Type="Database1Model.Doctor" Role="Doctor" Multiplicity="1" />
@@ -459,6 +502,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SendData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idDoctor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sendData1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isSign" Type="Boolean" />
+          <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toUserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK_SendData_ToTable" FromRole="SendData" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_SendData_ToTable">
+          <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
+          <End Type="Database1Model.SendData" Role="SendData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="SendData">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -549,6 +623,26 @@
                 <ScalarProperty Name="fileFinger" ColumnName="fileFinger" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SendData">
+            <EntityTypeMapping TypeName="Database1Model.SendData">
+              <MappingFragment StoreEntitySet="SendData">
+                <ScalarProperty Name="toUserId" ColumnName="toUserId" />
+                <ScalarProperty Name="dateInsert" ColumnName="dateInsert" />
+                <ScalarProperty Name="isSign" ColumnName="isSign" />
+                <ScalarProperty Name="sendData1" ColumnName="sendData1" />
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="Database1Model.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="City" ColumnName="City" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

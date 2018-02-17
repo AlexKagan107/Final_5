@@ -22,6 +22,16 @@ namespace Final_5.Areas.AnotherArea.Controllers
             return View(await dateTimeByDoctor.ToListAsync());
         }
 
+
+
+        public async Task<ActionResult> Practis(string str)
+        {
+            var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(str)).ToList();
+           
+            return View(result);
+        }
+
+
         // GET: AnotherArea/DateTimeByDoctorsAnotherArea/Details/5
         public async Task<ActionResult> Details(int? id)
         {
