@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    var concatString = "";
-    var count = 1;
+    var concatString = "available doctor you have is for practis...";
+    
 
 }
 
@@ -32,12 +32,9 @@
     @foreach (var item in Model)
     {
         if (item.turnId.Equals("0"))
-        {
-            
-            var day = item.insertDate.Date.Day;
-            var mounth = item.insertDate.Date.Month;
-            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth";
-            concatString += x;
+        {      
+            var y = item.practicsName + "...";
+            concatString += y;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.practicsName)

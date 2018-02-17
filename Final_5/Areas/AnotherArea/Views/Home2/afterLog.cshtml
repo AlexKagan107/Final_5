@@ -118,6 +118,8 @@
                 if (interim_span.innerHTML == "medicine")
                     window.location = "http://localhost:11092/AnotherArea/MedicalSheetsAnotherArea";
 
+                if (interim_span.innerHTML == "log out")
+                    window.location = "http://localhost:11092/Login/Logout";
 
                 if (transcription.innerHTML.indexOf("create") > -1 || interim_span.innerHTML.indexOf("create") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
@@ -126,7 +128,7 @@
                     }
                 }
 
-                if (transcription.innerHTML.indexOf("practice") > -1 || interim_span.innerHTML.indexOf("practice") > -1) {
+                if (transcription.innerHTML.indexOf("find") > -1 || interim_span.innerHTML.indexOf("find") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
                         window.location = "http://localhost:11092/AnotherArea/DateTimeByDoctorsAnotherArea/Practis?str=" + name;

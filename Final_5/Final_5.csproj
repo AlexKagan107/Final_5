@@ -180,6 +180,9 @@
     <Compile Include="Models\Brunch.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cities.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DateTimeByDoctor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

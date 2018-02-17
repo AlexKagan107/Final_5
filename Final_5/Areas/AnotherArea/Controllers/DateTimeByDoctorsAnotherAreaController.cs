@@ -27,7 +27,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
         public async Task<ActionResult> Practis(string str)
         {
             var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(str)).ToList();
-           
+            var turn = db.Turn.Include(t => t.Practics);
             return View(result);
         }
 

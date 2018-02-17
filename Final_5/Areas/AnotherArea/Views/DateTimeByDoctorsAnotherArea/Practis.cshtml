@@ -4,6 +4,19 @@
     ViewBag.Title = "Index";
     var concatString = "";
     var count = 1;
+    var January = "January";
+    var February = "February";
+    var March = "March";
+    var April = "April";
+    var May = "May";
+    var June = "June";
+    var July = "July";
+    var August = "August";
+    var September = "September";
+    var October = "October";
+    var November = "November";
+    var December = "December";
+
 
 }
 
@@ -33,10 +46,61 @@
     {
         if (item.turnId.Equals("0"))
         {
+            var mRes = "";
 
             var day = item.insertDate.Date.Day;
             var mounth = item.insertDate.Date.Month;
-            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..." + day + "...day..." + mounth + "...mounth";
+
+            if (mounth == 1)
+            {
+                mRes = January;
+            }
+            if (mounth == 2)
+            {
+                mRes = February;
+            }
+            if (mounth == 3)
+            {
+                mRes = March;
+            }
+            if (mounth == 4)
+            {
+                mRes = April;
+            }
+            if (mounth == 5)
+            {
+                mRes = May;
+            }
+            if (mounth == 6)
+            {
+                mRes = June;
+            }
+            if (mounth == 7)
+            {
+                mRes = July;
+            }
+            if (mounth == 8)
+            {
+                mRes = August;
+            }
+            if (mounth == 9)
+            {
+                mRes = September;
+            }
+            if (mounth == 10)
+            {
+                mRes = October;
+            }
+            if (mounth == 11)
+            {
+                mRes = November;
+            }
+            if (mounth == 12)
+            {
+                mRes = December;
+            }
+
+            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..." + day + "...in..." + mRes;
             concatString += x;
             <tr>
                 <td>

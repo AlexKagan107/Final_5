@@ -19,7 +19,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
         {
             Turn t = new Turn();
             DateTimeByDoctor d = new DateTimeByDoctor();
-
+            var dayString = "";
             string userId = Session["userId"].ToString();
 
             List<Models.Turn> turn = await db.Turn.ToListAsync();
@@ -27,20 +27,71 @@ namespace Final_5.Areas.AnotherArea.Controllers
             var y = str.Split(' ');
             string actualpracticsName = y[0];
             string actualTime = y[1];
-            string day = y[2];
+            string day = y[3];
             string month = y[4];
+
+
+
+            if ( month.Equals("january"))
+            {
+                dayString = "1";
+            }
+            if (month.Equals("february"))
+            {
+                dayString = "2";
+            }
+            if (month.Equals("march"))
+            {
+                dayString = "3";
+            }
+            if (month.Equals("april"))
+            {
+                dayString = "4";
+            }
+            if (month.Equals("may"))
+            {
+                dayString = "5";
+            }
+            if (month.Equals("june"))
+            {
+                dayString = "6";
+            }
+            if (month.Equals("july"))
+            {
+                dayString = "7";
+            }
+            if (month.Equals("august"))
+            {
+                dayString = "8";
+            }
+            if (month.Equals("september"))
+            {
+                dayString = "9";
+            }
+            if (month.Equals("october"))
+            {
+                dayString = "10";
+            }
+            if (month.Equals("november"))
+            {
+                dayString = "11";
+            }
+            if (month.Equals("december"))
+            {
+                dayString = "12";
+            }
 
             // var practisTable = db.Practics.Where(x => x.practicsName.Equals(actualpracticsName)).ToList();
             var res = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(actualpracticsName))
                                                .Where(x => x.turnId.Equals("0"))
                                                .Where(x => x.insertDate.ToString().Contains(actualTime)).ToList()
                                                .Where(x => x.insertDate.Day.ToString().Equals(day)).ToList()
-                                               .Where(x => x.insertDate.Month.ToString().Equals(month)).ToList();
+                                               .Where(x => x.insertDate.Month.ToString().Equals(dayString)).ToList();
             //var yyy = practisTable.Count;
             // var zzz = res.Count;
             if (res.Count == 1)
             {
-                string date = day.ToString()+"/"+month.ToString()+"/18"+ " " + actualTime;
+                string date = day.ToString()+"/"+ dayString.ToString()+"/18"+ " " + actualTime;
                 DateTime dt = Convert.ToDateTime(date);
                 t.userId = userId;
                 t.hour = "";
