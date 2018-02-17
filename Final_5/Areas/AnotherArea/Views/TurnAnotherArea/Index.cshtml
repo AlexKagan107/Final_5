@@ -8,29 +8,29 @@
 
 }
 
-<h2>Show all turn</h2>
-<p>
+<h2 style="color:orange; margin-top:50px">All User Turn</h2>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
-    <tr>
+    <tr style="font-size:20px; color:orange">
         <th>
-            @Html.DisplayNameFor(model => model.userId)
+            User ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            Date of Turn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.city)
+            City
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.comment)
+            Summary
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.medicineName)
+            Prescription
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Practics.practicsName)
+            Doctor Practic
         </th>
 
         <th></th>
@@ -43,7 +43,7 @@
         var y = "Your doctor has prescribed a prescription for you it is..." + item.medicineName + "doctor commentary is..." + item.comment;
         concatString2 += y;
 
-        <tr>
+        <tr style="font-size:18px; color:white">
             <td>
                 @Html.DisplayFor(modelItem => item.userId)
             </td>
@@ -62,7 +62,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Practics.practicsName)
             </td>
-            @if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
+            @*@if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
             {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -77,7 +77,7 @@
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
-            }
+            }*@
         </tr>
     }
 </table>
