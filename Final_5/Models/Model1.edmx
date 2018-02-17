@@ -369,16 +369,16 @@
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_DateTimeByDoctor_ToTable" Association="Database1Model.FK_DateTimeByDoctor_ToTable">
+            <End Role="Practics" EntitySet="Practics" />
+            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
+          </AssociationSet>
           <EntitySet Name="SendData" EntityType="Database1Model.SendData" />
           <AssociationSet Name="FK_SendData_ToTable" Association="Database1Model.FK_SendData_ToTable">
             <End Role="Users" EntitySet="Users" />
             <End Role="SendData" EntitySet="SendData" />
           </AssociationSet>
           <EntitySet Name="Cities" EntityType="Database1Model.Cities" />
-          <AssociationSet Name="FK_DateTimeByDoctor_ToTable" Association="Database1Model.FK_DateTimeByDoctor_ToTable">
-            <End Role="Practics" EntitySet="Practics" />
-            <End Role="DateTimeByDoctor" EntitySet="DateTimeByDoctor" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Medicine">
           <Key>
@@ -490,6 +490,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DateTimeByDoctor_ToTable">
+          <End Type="Database1Model.Practics" Role="Practics" Multiplicity="1" />
+          <End Type="Database1Model.DateTimeByDoctor" Role="DateTimeByDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Practics">
+              <PropertyRef Name="practicsName" />
+            </Principal>
+            <Dependent Role="DateTimeByDoctor">
+              <PropertyRef Name="practicsName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="SendData">
           <Key>
             <PropertyRef Name="Id" />
@@ -499,9 +511,9 @@
           <Property Name="idDoctor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sendData1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isSign" Type="Boolean" />
-          <NavigationProperty Name="Users" Relationship="Database1Model.FK_SendData_ToTable" FromRole="SendData" ToRole="Users" />
           <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="toUserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK_SendData_ToTable" FromRole="SendData" ToRole="Users" />
         </EntityType>
         <Association Name="FK_SendData_ToTable">
           <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
@@ -521,18 +533,6 @@
           </Key>
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_DateTimeByDoctor_ToTable">
-          <End Type="Database1Model.Practics" Role="Practics" Multiplicity="1" />
-          <End Type="Database1Model.DateTimeByDoctor" Role="DateTimeByDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Practics">
-              <PropertyRef Name="practicsName" />
-            </Principal>
-            <Dependent Role="DateTimeByDoctor">
-              <PropertyRef Name="practicsName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -632,6 +632,7 @@
                 <ScalarProperty Name="toUserId" ColumnName="toUserId" />
                 <ScalarProperty Name="dateInsert" ColumnName="dateInsert" />
                 <ScalarProperty Name="isSign" ColumnName="isSign" />
+                <ScalarProperty Name="sendData1" ColumnName="sendData1" />
                 <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

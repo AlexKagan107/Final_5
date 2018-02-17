@@ -213,6 +213,7 @@
     <Compile Include="Models\Practics.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchDoctor.cs" />
     <Compile Include="Models\SearchUser.cs" />
     <Compile Include="Models\SendData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -248,7 +249,11 @@
     <Content Include="Content\Images\bg3.jpg" />
     <Content Include="Content\Images\bg4.jpg" />
     <Content Include="Content\Images\calendar.jpg" />
+    <Content Include="Content\Images\chatDoc1.jpg" />
+    <Content Include="Content\Images\chatDoc2.jpg" />
     <Content Include="Content\Images\doctor-chat.jpg" />
+    <Content Include="Content\Images\Envelope.png" />
+    <Content Include="Content\Images\Envelope3.png" />
     <Content Include="Content\Images\fingerprint.png" />
     <Content Include="Content\Images\fingerprint2.png" />
     <Content Include="Content\Images\icons invalid 2.png" />
@@ -393,6 +398,9 @@
     <Content Include="Views\SendData\Details.cshtml" />
     <Content Include="Views\SendData\Edit.cshtml" />
     <Content Include="Views\SendData\Index.cshtml" />
+    <Content Include="Views\DateTimeByDoctor\DoctorByBrunche.cshtml" />
+    <Content Include="Views\DateTimeByDoctor\SearchDoctor.cshtml" />
+    <Content Include="Views\SendData\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\AnotherArea\Models\" />

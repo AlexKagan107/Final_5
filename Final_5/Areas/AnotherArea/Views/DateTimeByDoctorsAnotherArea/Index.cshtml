@@ -2,57 +2,73 @@
 
 @{
     ViewBag.Title = "Index";
-    var concatString = "available doctor you have is for practis...";
-    
+    var concatString = "";
+    var count = 1;
 
 }
 
-<h2>Index</h2>
+<h2 style="color:orange; margin-top:50px">Available Turns</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+</p>*@
+<table class="table" >
+    <tr style="font-size:20px; color:orange">
         <th>
-            @Html.DisplayNameFor(model => model.practicsName)
+            Doctor Practic
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.insertDate)
+            Doctor ID
         </th>
         <th>
+            Doctor Name
+        </th>
+        <th>
+            Date to Turn
+        </th>
+        <th>
+            City
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.turnId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor.firstName)
-        </th>
+        </th>*@
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         if (item.turnId.Equals("0"))
-        {      
-            var y = item.practicsName + "...";
-            concatString += y;
-            <tr>
+        {
+            
+            var day = item.insertDate.Date.Day;
+            var mounth = item.insertDate.Date.Month;
+            var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth....in city" + item.city;
+            concatString += x;
+            <tr style="font-size:18px; color:white">
                 <td>
                     @Html.DisplayFor(modelItem => item.practicsName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.insertDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.turnId)
+                    @Html.DisplayFor(modelItem => item.Doctor.idDoctor)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Doctor.firstName)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.insertDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.turnId)
+                </td>*@
+                @*<td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                </td>*@
             </tr>
         }
     }

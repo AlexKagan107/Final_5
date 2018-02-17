@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Final_5.Models.SendData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div style="margin-top:20px; margin-left:27%;">
+    <img src="~/Content/Images/chatDoc1.jpg" style="width:70% ; height:50%" class="img-rounded" alt="Cinque Terre" />
+</div>
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div class="row">
+
+
+    <div style="margin-left:28%; margin-top:40px; float: left">
+        <h2>Write New Message</h2>
+        <a class="btn" href="~/SendData/Create" style="margin-left:55px;margin-top:10px"><img src="~/Content/Images/Envelope.png" style="width:100%; height:100%" /></a>
+    </div>
+
+    <div style="margin-left:58%; margin-top:60px">
+        <h2>Read Messages</h2>
+        <a class="btn" href="~/SendData/Index" style="margin-left:35px;margin-top:0px"><img src="~/Content/Images/Envelope3.png" style="width:100%; height:100%" /></a>
+    </div>
+
+</div>
+

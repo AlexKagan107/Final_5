@@ -182,7 +182,7 @@ namespace Final_5.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idDoctor = new SelectList(db.Doctor, "idDoctor", "idDoctor", dateTimeByDoctor.idDoctor);
-           // ViewBag.city = new SelectList(db.Brunch, "city", "city", dateTimeByDoctor.city);
+            // ViewBag.city = new SelectList(db.Brunch, "city", "city", dateTimeByDoctor.city);
 
 
             return View(dateTimeByDoctor);
@@ -212,6 +212,22 @@ namespace Final_5.Controllers
             db.DateTimeByDoctor.Remove(dateTimeByDoctor);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> SearchDoctor(string practicsName,string city)
+        {
+            if (practicsName != null)
+            {
+                var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(practicsName))
+                                                .Where(x => x.city.Equals(city))
+                                                .Where(x => x.turnId.Equals("0")).ToList();
+                var dateTimeByDoctor = db.DateTimeByDoctor.Include(d => d.Doctor);
+                return View(result);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
