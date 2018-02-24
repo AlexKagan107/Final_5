@@ -310,10 +310,16 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
         public ActionResult succefullyInsert()
         {
-      
-            
+                  
                 return View();
             
+        }
+
+        public ActionResult sendMessage()
+        {
+
+            return View();
+
         }
 
         public ActionResult failedInsert()
