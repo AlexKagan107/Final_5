@@ -107,8 +107,26 @@ namespace Final_5.Controllers
             return View(sendData);
         }
 
-        // GET: SendData/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> CreateBlind(string str)
+        {
+            SendData t = new SendData();
+            var userId = Session["userId"].ToString();
+
+            var resultIdDoc = db.Users.Where(x => x.userId.Equals(userId)).ToList();
+            t.userId = Session["userId"].ToString();
+            t.toUserId = resultIdDoc[0].idDoctor;
+            t.idDoctor = resultIdDoc[0].idDoctor;
+            t.dateInsert = DateTime.Now;
+            t.isSign = false;
+            db.SendData.Add(t);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+
+            return View(t);
+        }
+
+            // GET: SendData/Edit/5
+            public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {

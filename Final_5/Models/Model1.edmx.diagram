@@ -24,6 +24,10 @@
         <EntityTypeShape EntityType="Database1Model.SendData" Width="1.5" PointX="8.75" PointY="1.375" />
         <AssociationConnector Association="Database1Model.FK_SendData_ToTable" />
         <EntityTypeShape EntityType="Database1Model.Cities" Width="1.5" PointX="0.75" PointY="8.75" />
+<<<<<<< HEAD
+        
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 83f106fde335826ee103469e73c3a4fa02608325
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

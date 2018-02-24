@@ -32,6 +32,24 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
             if (day.Equals("one"))
                 day = "1";
+            if (day.Equals("two"))
+                day = "2";
+            if (day.Equals("three"))
+                day = "3";
+            if (day.Equals("four"))
+                day = "4";
+            if (day.Equals("five"))
+                day = "5";
+            if (day.Equals("six"))
+                day = "6";
+            if (day.Equals("seven"))
+                day = "7";
+            if (day.Equals("eight"))
+                day = "8";
+            if (day.Equals("nine"))
+                day = "9";
+            if (day.Equals("ten"))
+                day = "10";
 
             if ( month.Equals("january"))
             {
@@ -146,7 +164,24 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
 
 
+        public async Task<ActionResult> CreateBlind(string str)
+        {
+            SendData t = new SendData();
+            var userId = Session["userId"].ToString();
 
+            var resultIdDoc = db.Users.Where(x => x.userId.Equals(userId)).ToList();
+            t.userId = Session["userId"].ToString();
+            t.toUserId = resultIdDoc[0].idDoctor;
+            t.idDoctor = resultIdDoc[0].idDoctor;
+            t.dateInsert = DateTime.Now;
+            t.sendData1 = str;
+            t.isSign = false;
+            db.SendData.Add(t);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Inde2","Home2");
+
+          
+        }
 
         // GET: AnotherArea/TurnAnotherArea
         public async Task<ActionResult> Index()

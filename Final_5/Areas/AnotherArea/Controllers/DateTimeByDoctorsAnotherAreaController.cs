@@ -26,7 +26,11 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
         public async Task<ActionResult> Practis(string str)
         {
-            var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(str)).ToList();
+            var y = str.Split(' ');
+            string actualpracticsName = y[0];
+            string actualCity = y[2];
+            var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(actualpracticsName))
+                                            .Where(x => x.city.Equals(actualCity)).ToList();
             var turn = db.Turn.Include(t => t.Practics);
             return View(result);
         }
