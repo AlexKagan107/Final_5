@@ -161,6 +161,7 @@
     <Compile Include="Areas\AnotherArea\Controllers\DateTimeByDoctorsAnotherAreaController.cs" />
     <Compile Include="Areas\AnotherArea\Controllers\Home2Controller.cs" />
     <Compile Include="Areas\AnotherArea\Controllers\MedicalSheetsAnotherAreaController.cs" />
+    <Compile Include="Areas\AnotherArea\Controllers\SendDatasAnotherAreaController.cs" />
     <Compile Include="Areas\AnotherArea\Controllers\TurnAnotherAreaController.cs" />
     <Compile Include="Controllers\BruncheController.cs" />
     <Compile Include="Controllers\DateTimeByDoctorController.cs" />
@@ -320,6 +321,12 @@
     <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\failedInsert.cshtml" />
     <Content Include="Areas\AnotherArea\Views\Home2\afterLog.cshtml" />
     <Content Include="Areas\AnotherArea\Views\DateTimeByDoctorsAnotherArea\Practis.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\TurnAnotherArea\sendMessage.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\SendDatasAnotherArea\Create.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\SendDatasAnotherArea\Delete.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\SendDatasAnotherArea\Details.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\SendDatasAnotherArea\Edit.cshtml" />
+    <Content Include="Areas\AnotherArea\Views\SendDatasAnotherArea\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -401,6 +408,7 @@
     <Content Include="Views\DateTimeByDoctor\DoctorByBrunche.cshtml" />
     <Content Include="Views\DateTimeByDoctor\SearchDoctor.cshtml" />
     <Content Include="Views\SendData\Chat.cshtml" />
+    <Content Include="Views\SendData\message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\AnotherArea\Models\" />

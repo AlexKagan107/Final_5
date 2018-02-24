@@ -178,7 +178,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
             t.isSign = false;
             db.SendData.Add(t);
             await db.SaveChangesAsync();
-            return RedirectToAction("Inde2","Home2");
+            return RedirectToAction("sendMessage");
 
           
         }

@@ -39,6 +39,29 @@ namespace Final_5.Controllers
             return View();
 
         }
+        //public async Task<ActionResult> message()
+        //{
+
+        //    string userId = "";
+        //    if (Session["userId"] != null)
+        //    {
+        //        if (Session["permissions"].Equals("1") || Session["permissions"].Equals("3"))
+        //        {
+        //            userId = Session["userId"].ToString();
+        //            var result = db.SendData.Where(x => x.idDoctor.Equals(userId)).ToList();
+        //            return View(result);
+        //        }
+        //        else if (Session["permissions"].Equals("2"))
+        //        {
+        //            userId = Session["userId"].ToString();
+        //            var result2 = db.SendData.Where(x => x.toUserId.Equals(userId)).ToList();
+        //            return View(result2);
+        //        }
+
+        //    }
+        //    return View();
+
+        //}
 
         public async Task<ActionResult> Chat()
         {

@@ -130,6 +130,9 @@
                 if (interim_span.innerHTML == "out")
                     window.location = "http://localhost:11092/Login/Logout";
 
+                if (interim_span.innerHTML == "message")
+                    window.location = "http://localhost:11092/AnotherArea/SendDatasAnotherArea";
+
                 if (transcription.innerHTML.indexOf("new") > -1 || interim_span.innerHTML.indexOf("new") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
