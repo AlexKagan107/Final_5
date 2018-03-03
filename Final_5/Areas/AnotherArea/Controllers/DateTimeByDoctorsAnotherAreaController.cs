@@ -27,6 +27,9 @@ namespace Final_5.Areas.AnotherArea.Controllers
         public async Task<ActionResult> Practis(string str)
         {
             var y = str.Split(' ');
+            var len = y.Length;
+            if (len != 3)
+                return RedirectToAction("Inde2", "Home2");
             string actualpracticsName = y[0];
             string actualCity = y[2];
             var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(actualpracticsName))

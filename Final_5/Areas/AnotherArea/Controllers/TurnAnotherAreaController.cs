@@ -25,6 +25,10 @@ namespace Final_5.Areas.AnotherArea.Controllers
             List<Models.Turn> turn = await db.Turn.ToListAsync();
             // IEnumerable<string> userNames = turn.Select(x => x.practicsName);
             var y = str.Split(' ');
+            var len = y.Length;
+            if(len != 5)
+                return RedirectToAction("Inde2", "Home2");
+
             string actualpracticsName = y[0];
             string actualTime = y[1];
             string day = y[3];
@@ -36,7 +40,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
                 day = "2";
             if (day.Equals("three"))
                 day = "3";
-            if (day.Equals("four"))
+            if (day.Equals("four") || day.Equals("for"))
                 day = "4";
             if (day.Equals("five"))
                 day = "5";
