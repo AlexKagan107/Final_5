@@ -149,7 +149,7 @@
                 if (transcription.innerHTML.indexOf("new message") > -1 || interim_span.innerHTML.indexOf("new message") > -1) {
                     var name = transcription.innerHTML.split(" ").slice(1).join(' ').toLowerCase();
                     if (name != undefined && name != "") {
-                        window.location = "http://localhost:11092/AnotherArea/TurnAnotherArea/CreateBlind?str=" + name;
+                        window.location = "http://localhost:11092/AnotherArea/SendDatasAnotherArea/CreateBlind?str=" + name;
                     }
                 }
 
