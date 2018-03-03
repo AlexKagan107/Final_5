@@ -32,7 +32,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
             if (day.Equals("one"))
                 day = "1";
-            if (day.Equals("two"))
+            if (day.Equals("two") || day.Equals("to"))
                 day = "2";
             if (day.Equals("three"))
                 day = "3";
@@ -116,7 +116,7 @@ namespace Final_5.Areas.AnotherArea.Controllers
                 t.hour = "";
                 t.practicsName = actualpracticsName;
                 t.date = dt.ToString();
-                t.city = "";
+                t.city = res[0].city;
                 t.comment = "";
                 t.medicineName = "none";
                 db.Turn.Add(t);
@@ -310,10 +310,16 @@ namespace Final_5.Areas.AnotherArea.Controllers
 
         public ActionResult succefullyInsert()
         {
-      
-            
+                  
                 return View();
             
+        }
+
+        public ActionResult sendMessage()
+        {
+
+            return View();
+
         }
 
         public ActionResult failedInsert()

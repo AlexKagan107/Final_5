@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     //var concatString = "";
-    var concatString = "available doctor you have is for practis...";
+    var concatString = "";
     var count = 1;
 
 }
@@ -46,8 +46,9 @@
             var mounth = item.insertDate.Date.Month;
             //var x = count + "available doctor you have is for practis..." + item.practicsName + "...in date..." + item.insertDate.ToShortTimeString() + "oclock..."+day+"...day..."+mounth+"...mounth....in city" + item.city;
             //concatString += x;
-            var y = item.practicsName + "...in..."+item.city;
+            var y = count +"...." + "available doctor you have is for practis..."+item.practicsName + "...in..."+item.city+"....";
             concatString += y;
+            count++;
 
             <tr style="font-size:18px; color:white">
                 <td>
