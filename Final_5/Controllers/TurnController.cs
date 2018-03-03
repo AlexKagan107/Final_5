@@ -111,17 +111,22 @@ namespace Final_5.Controllers
                 t.userId = Session["userId"].ToString();
                 t.practicsName = practicsName;
 
-                var result = db.Brunch.Where(x => x.practicsName.Equals(practicsName)).ToList();
+                var result = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(practicsName)).ToList();
                 var resultDate = db.DateTimeByDoctor.Where(x => x.practicsName.Equals(practicsName)).ToList();
 
                 List<String> resSelect = new List<string>();
                 List<DateTime> resDate = new List<DateTime>();
                 for (int i = 0; i < result.Count; i++)
                 {
-
-                    resSelect.Add(result[i].city);
+                    if (result[i].turnId.Equals("0"))
+                    {
+                        resSelect.Add(result[i].city);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
-
 
                 for (int i = 0; i < resultDate.Count; i++)
                 {
