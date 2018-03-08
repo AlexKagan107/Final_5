@@ -8,12 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace Final_5.Controllers
 {
     public class LoginController : Controller
     {
-        //Login.Form1 log;
+        Login.Form1 log;
 
         private Database1Entities db = new Database1Entities();
 
@@ -46,7 +49,9 @@ namespace Final_5.Controllers
         public async Task<ActionResult> Login1(Users model)
         {
             string result = "fail";
-            Users user = await db.Users.SingleOrDefaultAsync(x => x.userId == model.userId && x.password == model.password);
+            string psw = "";
+            psw = Encrypt(model.password);
+            Users user = await db.Users.SingleOrDefaultAsync(x => x.userId == model.userId && x.password == psw);
             if (user != null)
             {
                 if (user.fileFinger == "" || user.fileFinger == "not")
@@ -115,13 +120,13 @@ namespace Final_5.Controllers
             string result = "fail";
             string name = "";
 
-            //log = new Login.Form1();
+            log = new Login.Form1();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           // Application.Run(log);
+            Application.Run(log);
 
-           // name = log.ThisName();
+            name = log.ThisName();
 
             if (name != "")
             {
@@ -154,6 +159,51 @@ namespace Final_5.Controllers
 
             //return Json(flag, JsonRequestBehavior.AllowGet);
             return RedirectToAction("SearchDoctor", "DateTimeByDoctor", new { practicsName = tmp.practicsName, city = tmp.city });
+        }
+
+
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
         }
 
 

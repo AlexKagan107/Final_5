@@ -10,12 +10,15 @@ using System.Web.Mvc;
 using Final_5.Models;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace Final_5.Controllers
 {
     public class UsersController : Controller
     {
-        //Registration.Form1 Reg;
+        Registration.Form1 Reg;
 
         private Database1Entities db = new Database1Entities();
 
@@ -55,8 +58,11 @@ namespace Final_5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "userId,password,fileFinger,firstName,lastName,address,phone,idDoctor,permissions")] Users users)
         {
+            string psw = "";
             if (ModelState.IsValid)
             {
+                psw = Encrypt(users.password);
+                users.password = psw;
                 db.Users.Add(users);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -89,8 +95,11 @@ namespace Final_5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "userId,password,fileFinger,firstName,lastName,address,phone,idDoctor,permissions")] Users users)
         {
+            string psw = "";
             if (ModelState.IsValid)
             {
+                psw = Encrypt(users.password);
+                users.password = psw;
                 db.Entry(users).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -149,6 +158,29 @@ namespace Final_5.Controllers
             //return RedirectToAction("Index");
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
         }
     }
 }
