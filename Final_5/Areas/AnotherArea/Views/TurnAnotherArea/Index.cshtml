@@ -6,6 +6,18 @@
     var concatString = "";
     var concatString2 = "";
 
+    var January = "January";
+    var February = "February";
+    var March = "March";
+    var April = "April";
+    var May = "May";
+    var June = "June";
+    var July = "July";
+    var August = "August";
+    var September = "September";
+    var October = "October";
+    var November = "November";
+    var December = "December";
 }
 
 <h2 style="color:orange; margin-top:50px">All User Turn</h2>
@@ -37,8 +49,12 @@
     </tr>
     @foreach (var item in Model)
     {
-        var dateHour = item.date.Split(' ');
-        var x = "You have a turn set for you with a doctor who specializes in..." + item.practicsName + "...practis in city named..." + item.city + "...schedule for..." + dateHour[0] + " o clock";
+        var dateHour = item.date.Split(':');
+        var h = dateHour[0].Split(' ');
+
+
+
+        var x = "You have a turn set for you with a doctor who specializes in..." + item.practicsName + "...in city named..." + item.city + "...schedule for..." + h[1] + "and" + dateHour[1] + " o clock";
         concatString += x;
         var y = "Your doctor has prescribed a prescription for you it is..." + item.medicineName + "doctor commentary is..." + item.comment;
         concatString2 += y;

@@ -34,72 +34,114 @@ namespace Final_5.Areas.AnotherArea.Controllers
             string day = y[3];
             string month = y[4];
 
-            if (day.Equals("one"))
+            if (day.Equals("one") || day.Equals("1th"))
                 day = "1";
-            if (day.Equals("two") || day.Equals("to"))
+            if (day.Equals("two") || day.Equals("to") || day.Equals("2th"))
                 day = "2";
-            if (day.Equals("three"))
+            if (day.Equals("three") || day.Equals("3th"))
                 day = "3";
-            if (day.Equals("four") || day.Equals("for"))
+            if (day.Equals("four") || day.Equals("for") || day.Equals("4th"))
                 day = "4";
-            if (day.Equals("five"))
+            if (day.Equals("five") || day.Equals("5th"))
                 day = "5";
-            if (day.Equals("six"))
+            if (day.Equals("six") || day.Equals("6th"))
                 day = "6";
-            if (day.Equals("seven"))
+            if (day.Equals("seven") || day.Equals("7th"))
                 day = "7";
-            if (day.Equals("eight"))
+            if (day.Equals("eight") || day.Equals("8th"))
                 day = "8";
-            if (day.Equals("nine"))
+            if (day.Equals("nine") || day.Equals("9th"))
                 day = "9";
-            if (day.Equals("ten"))
+            if (day.Equals("ten") || day.Equals("10th"))
                 day = "10";
+            if (day.Equals("eleven") || day.Equals("11th"))
+                day = "11";
+            if (day.Equals("twelve") || day.Equals("12th"))
+                day = "12";
+            if (day.Equals("thirteen") || day.Equals("13th"))
+                day = "13";
+            if (day.Equals("fourteen") || day.Equals("14th"))
+                day = "14";
+            if (day.Equals("fifteen") || day.Equals("15th"))
+                day = "15";
+            if (day.Equals("sixteen") || day.Equals("16th"))
+                day = "16";
+            if (day.Equals("seventeen") || day.Equals("17th"))
+                day = "17";
+            if (day.Equals("eighteen") || day.Equals("18th"))
+                day = "18";
+            if (day.Equals("nineteen") || day.Equals("19th"))
+                day = "19";
+            if (day.Equals("20th"))
+                day = "20";
+            if (day.Equals("21th"))
+                day = "21";
+            if (day.Equals("22th"))
+                day = "22";
+            if (day.Equals("23th"))
+                day = "23";
+            if (day.Equals("24th"))
+                day = "24";
+            if (day.Equals("25th"))
+                day = "25";
+            if (day.Equals("26th"))
+                day = "26";
+            if (day.Equals("27th"))
+                day = "27";
+            if (day.Equals("28th"))
+                day = "28";
+            if (day.Equals("29th"))
+                day = "29";
+            if (day.Equals("30th"))
+                day = "30";
+            if (day.Equals("31th"))
+                day = "31";
 
-            if ( month.Equals("january"))
+            if (month.Equals("january") || month.Equals("January"))
             {
                 dayString = "1";
             }
-            if (month.Equals("february"))
+            if (month.Equals("february") || month.Equals("February"))
             {
                 dayString = "2";
             }
-            if (month.Equals("march"))
+            if (month.Equals("march") || month.Equals("March"))
             {
                 dayString = "3";
             }
-            if (month.Equals("april"))
+            if (month.Equals("april") || month.Equals("April"))
             {
                 dayString = "4";
             }
-            if (month.Equals("may"))
+            if (month.Equals("may") || month.Equals("May"))
             {
                 dayString = "5";
             }
-            if (month.Equals("june"))
+            if (month.Equals("june") || month.Equals("June"))
             {
                 dayString = "6";
             }
-            if (month.Equals("july"))
+            if (month.Equals("july") || month.Equals("July"))
             {
                 dayString = "7";
             }
-            if (month.Equals("august"))
+            if (month.Equals("august") || month.Equals("August"))
             {
                 dayString = "8";
             }
-            if (month.Equals("september"))
+            if (month.Equals("september") || month.Equals("September"))
             {
                 dayString = "9";
             }
-            if (month.Equals("october"))
+            if (month.Equals("october") || month.Equals("October"))
             {
                 dayString = "10";
             }
-            if (month.Equals("november"))
+            if (month.Equals("november") || month.Equals("November"))
             {
                 dayString = "11";
             }
-            if (month.Equals("december"))
+            if (month.Equals("december") || month.Equals("December"))
             {
                 dayString = "12";
             }
