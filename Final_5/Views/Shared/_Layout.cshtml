@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title MediCare</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -31,7 +31,7 @@
                     </ul>
                 }
             </div>
-            @if (Session["permissions"] != null && (Session["permissions"].Equals("1") || Session["permissions"].Equals("3")))
+            @if (Session["permissions"] != null && Session["permissions"].Equals("1"))
             {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -53,6 +53,33 @@
                             @*<li><a href="#">Welcome : @Session["userName"]</a></li>*@
                             <li><a href="/Users/Index">ALL USERS</a></li>
                             <li><a href="/Users/Create">REGISTER</a></li>
+                            <li><a href="/Login/Logout">LOGOUT</a></li>
+                        </ul>
+                    }
+
+                </div>
+            }
+            @if (Session["permissions"] != null && Session["permissions"].Equals("3"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Create Turn", "Create", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("All Turn", "AllUsers", "Turn", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Search User", "search_1", "Serach", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Medical Summary", "allMedicalSheet", "MedicalSheet", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Doctor", "Create", "DateTimeByDoctor", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Messages", "Chat", "SendData", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+
+                    </ul>
+
+
+                    @if (Session["userId"] != null)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            @*<li><a href="#">Welcome : @Session["userName"]</a></li>*@
+                            @*<li><a href="/Users/Index">ALL USERS</a></li>
+                            <li><a href="/Users/Create">REGISTER</a></li>*@
                             <li><a href="/Login/Logout">LOGOUT</a></li>
                         </ul>
                     }
